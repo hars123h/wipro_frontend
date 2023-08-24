@@ -9,7 +9,7 @@ const Fallback = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        navigate('/signup');
+        navigate('/login');
     },[]);
 
 

@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import Register from './components/Register';
-import Login from './Login';
+import Login from './components/Login';
 import Home from './components/Home';
 import Fallback from './components/Fallback';
 

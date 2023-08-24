@@ -1,0 +1,45 @@
+.quotes {
+    font-family: 'Urbanist', sans-serif;
+}
+
+.navbar {
+    background-color: #b57f37;
+}
+
+.signupMain {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #475058;
+    background-repeat: repeat-y;
+    background-position: center center;
+    overflow-x: hidden;
+}
+
+.signupMain.bgimg01::after {
+    background-image: url(./images/02.png);
+    background-position: 0 0;
+    background-size: 100%;
+}
+
+.signupMain:after {
+    content: " ";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bgcolor);
+    position: fixed;
+    z-index: -2;
+}
+
+.fillArea:focus {
+    border-color: #0aa496;
+}
+
+.fillArea:focus~.cut, .fillArea:not(:placeholder-shown)~.cut {
+    background-color: #fff;
+    transform: translateY(8px);
+}
+
+.fillArea:focus~.placeholder, .fillArea:not(:placeholder-shown)~.placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
