@@ -43,3 +43,31 @@
 .fillArea:focus~.placeholder, .fillArea:not(:placeholder-shown)~.placeholder {
     transform: translateY(-30px) translateX(10px) scale(0.75);
 }
+
+.active {
+    transition-duration: 0.3s;
+    transform: translate(0, -10px);
+}
+
+.bgimg::after {
+    background-image: url(./images//homeBg.png);
+    background-position: 0 0;
+    background-size: 100%;
+    background-color: #fff;
+    content: " ";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bgcolor);
+    position: fixed;
+    z-index: -2;
+}
+
+.invite {
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%)
+}
+
+.cardBg{
+    background-image: url(./images/GraphDefault.svg);
+}

@@ -7,6 +7,8 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Fallback from './components/Fallback';
+import Invest from './components/Invest';
+import Account from './components/Account';
 
 export const ContextApi = createContext();
 
@@ -44,6 +46,8 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Register />} />
             <Route path='/home' element={<Home />} />
+            <Route path='/invest' element={<Invest />} />
+            <Route path='/account' element={<Account />} />
             {/* </>
               :
               <>

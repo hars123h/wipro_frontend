@@ -7,7 +7,7 @@ import { ContextApi } from '../App';
 import logo from '../images/logo (1).svg'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import applogo from '../images/appLogo.svg'
-import tradelogo from '../images/logo_g.svg'
+import Tradmark from './Tradmark';
 
 const Register = () => {
 
@@ -51,26 +51,26 @@ const Register = () => {
     const handleRegister = async () => {
 
         if (mobno.length !== 10) {
-            toast('Invalid Mobile Number');
+            toaster('Invalid Mobile Number');
             return;
         }
 
         if (pwd.length < 6) {
-            toast('Password must contain at least 6 characters!');
+            toaster('Password must contain at least 6 characters!');
             return;
         }
 
         if (validatePassword(pwd) === false) {
-            toast('Password must contain letters and numbers or special symbols');
+            toaster('Password must contain letters and numbers or special symbols');
             return;
         }
 
         if (name.length === 0) {
-            toast('Nick Name Should not be empty')
+            toaster('Nick Name Should not be empty')
         }
 
         if (otp !== otpfield) {
-            toast('Wrong OTP entered!');
+            toaster('Wrong OTP entered!');
             return;
         }
 
@@ -127,6 +127,29 @@ const Register = () => {
 
     return (
         <>
+
+            {toasterShow &&
+                <div className='top-0 left-0 right-0 bottom-0 p-5 z-[999] fixed flex items-center'>
+                    <div className="before:content-[''] fixed top-0 left-0 right-0 bottom-0 bg-[rgba(46,46,46,0.1)] z-[1] backdrop-blur-[3px]"></div>
+                    <div className="flex items-start bg-[rgba(201,174,20,0.9)] max-w-[250px] p-5 -top-5 relative w-full mx-auto shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[7px] ">
+                        <div className="flex-1 p-[5px]">
+                            <p className='text-base text-white'>{toasterText}</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            {loading &&
+                <div className='top-0 left-0 right-0 bottom-0 p-5 z-[999] fixed flex items-center'>
+                    <div className="before:content-[''] fixed top-0 left-0 right-0 bottom-0 bg-[rgba(46,46,46,0.1)] z-[1] backdrop-blur-[3px]"></div>
+                    <div className="flex items-start bg-[rgba(75,169,88,0.9)] max-w-[250px] p-5 -top-5 relative w-full mx-auto shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[7px] ">
+                        <div className="flex-1 p-[5px]">
+                            <p className='text-base text-white'>{text}</p>
+                        </div>
+                    </div>
+                </div>
+            }
+
 
             <div className="signupMain bgimg01 after:bg-white">
 
@@ -285,14 +308,7 @@ const Register = () => {
                     </div>
 
 
-                    <div className="p-5 text-center opacity-30">
-                        <div className="">
-                            <img src={tradelogo} alt="trade logo" className='h-8 mx-auto hidden ' />
-                        </div>
-                        <div className="">
-                            <p className='text-sm text-[#4b4d5e]'>Copyright © 2023 Wipro</p>
-                        </div>
-                    </div>
+                    <Tradmark />
 
 
                 </div>
