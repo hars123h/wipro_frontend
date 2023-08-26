@@ -16,7 +16,7 @@ import invite from '../images/06.svg'
 import img201 from '../images/201.png'
 import img301 from '../images/301.png'
 import Card from './Card'
-import { HiChevronDoubleRight, HiOutlineChevronDoubleRight } from 'react-icons/hi'
+import { HiOutlineChevronDoubleRight } from 'react-icons/hi'
 import Tradmark from './Tradmark'
 
 
@@ -239,13 +239,13 @@ const Home = () => {
 
                             </div>
 
-                            <div className="m-5 flex flex-wrap justify-center items-center w-full">
+                            <Link to={`/article`} className="m-5 flex flex-wrap justify-center items-center w-full">
 
                                 <div className="font-bold text-[rgba(52,86,255,0.9)] text-base flex items-center">
                                     MORE <HiOutlineChevronDoubleRight size={18} />
                                 </div>
 
-                            </div>
+                            </Link>
 
                         </div>
 

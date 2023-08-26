@@ -48,6 +48,9 @@ function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/invest' element={<Invest />} />
             <Route path='/account' element={<Account />} />
+            {/* <Route path='/invite' element={<Account />} />
+            <Route path='/article' element={<Account />} /> 
+            <Route path='/orders' element={<Account />} /> */}
             {/* </>
               :
               <>
