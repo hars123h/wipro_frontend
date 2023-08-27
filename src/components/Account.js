@@ -12,11 +12,11 @@ import axios from 'axios'
 import BASE_URL from '../api_url'
 import { ContextApi } from '../App'
 
-const Account = ({ setUser }) => {
+const Account = () => {
 
     const navigate = useNavigate();
 
-    const {userDetails, setUserDetails} = useContext(ContextApi);
+    const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user } = useContext(ContextApi);
 
 
     const [name, setname] = useState('HI')
@@ -29,6 +29,19 @@ const Account = ({ setUser }) => {
         setUser()
         navigate('/login');
     }
+
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+    }, [])
+
 
     return (
         <>

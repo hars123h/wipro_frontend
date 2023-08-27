@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import Tradmark from './Tradmark'
 import hot from '../images/hot.svg'
@@ -10,7 +10,10 @@ import { ContextApi } from '../App'
 
 const Invest = () => {
 
-    const {userDetails, setUserDetails} = useContext(ContextApi);
+    const navigate = useNavigate();
+
+
+    const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
 
 
     const [stable, setStable] = useState('-top-[5px] bg-white font-bold text-[#0aa496] text-xl')
@@ -36,6 +39,20 @@ const Invest = () => {
             setActivity('-top-[5px] bg-white font-bold text-[#0aa496] text-xl')
         }
     }
+
+
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+    }, [])
+
 
 
 
@@ -133,6 +150,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={575}
                                                 plan_daily_earning={224.25}
@@ -140,6 +158,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={2000}
                                                 plan_daily_earning={800}
@@ -147,6 +166,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={5000}
                                                 plan_daily_earning={2000}
@@ -154,6 +174,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={10000}
                                                 plan_daily_earning={4100}
@@ -161,6 +182,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={30000}
                                                 plan_daily_earning={12600}
@@ -168,6 +190,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={50000}
                                                 plan_daily_earning={795500}
@@ -175,6 +198,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={100000}
                                                 plan_daily_earning={44000}
@@ -182,6 +206,7 @@ const Invest = () => {
 
                                             <ProductCard
                                                 product_image={img202}
+                                                product_type={0}
                                                 plan_cycle={37}
                                                 plan_amount={200000}
                                                 plan_daily_earning={90000}
@@ -197,42 +222,42 @@ const Invest = () => {
                                         <div className="flex flex-wrap items-center justify-between">
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 plan_cycle={1}
                                                 plan_amount={300}
                                                 plan_daily_earning={402}
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={2}
                                                 plan_cycle={3}
                                                 plan_amount={2000}
                                                 plan_daily_earning={880}
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={3}
                                                 plan_cycle={3}
                                                 plan_amount={5000}
                                                 plan_daily_earning={2500}
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={4}
                                                 plan_cycle={3}
                                                 plan_amount={10000}
                                                 plan_daily_earning={6000}
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={5}
                                                 plan_cycle={3}
                                                 plan_amount={30000}
                                                 plan_daily_earning={21000}
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={6}
                                                 plan_cycle={3}
                                                 plan_amount={50000}
                                                 plan_daily_earning={37500}
@@ -248,7 +273,7 @@ const Invest = () => {
                                         <div className="flex flex-wrap items-center justify-between">
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={20}
                                                 plan_amount={2001}
@@ -256,7 +281,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={20}
                                                 plan_amount={5000}
@@ -264,7 +289,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={''}
                                                 plan_cycle={27}
                                                 plan_amount={11500}
@@ -272,7 +297,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={30}
                                                 plan_amount={1500}
@@ -280,7 +305,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={30}
                                                 plan_amount={5000}
@@ -288,7 +313,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={30}
                                                 plan_amount={10000}
@@ -296,7 +321,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={30}
                                                 plan_amount={50000}
@@ -304,7 +329,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={1}
                                                 product_image={''}
                                                 plan_cycle={1}
                                                 plan_amount={200}
@@ -313,7 +338,7 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={'vip'}
+                                                product_type={2}
                                                 product_image={''}
                                                 plan_cycle={1}
                                                 plan_amount={2700}

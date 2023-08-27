@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import BASE_URL from '../api_url';
-import { toast } from 'react-toastify'
 import { ContextApi } from '../App';
 import logo from '../images/logo (1).svg'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
@@ -13,14 +12,10 @@ import Tradmark from './Tradmark';
 const Register = () => {
 
     const navigate = useNavigate();
-    // const { setUser } = useContext(ContextApi);
 
     const {
-        userDetails, setUserDetails,
-        loading, setLoading,
-        text, setText,
-        toasterShow, setToasterShow,
-        toasterText, setToasterText,
+        setLoading,
+        setText,
         toaster
     } = useContext(ContextApi);
 
@@ -98,31 +93,31 @@ const Register = () => {
                     setOTPfield('')
                     setOtp('')
                     setTimeout(() => {
-                        navigate('/home');
+                        navigate('/login');
                         setLoading(false);
                     }, 2000);
                 }
             })
             .catch((error) => {
-                toast('Something went wrong');
+                toaster('Something went wrong');
                 console.error(error);
             });
     }
 
     const handleMessage = () => {
         if (mobno.length !== 10) {
-            toast('Invalid Mobile No, please enter a valid number');
+            toaster('Invalid Mobile No, please enter a valid number');
             return;
         }
         fetch(`https://www.fast2sms.com/dev/bulkV2?authorization=27b58V4YOqBDMgWvNjapz1k9IHlrJfynC6w0hceRAZGoLimK3PuJC7OoiV4N2B6DjfwWKzb0lhgEetPH&variables_values=${otpfield}&route=otp&numbers=${mobno}`)
             .then((response) => {
                 console.log(response);
-                toast('OTP sent successfully');
+                toaster('OTP sent successfully');
             })
-            .catch(error => toast('Something went wrong'));
+            .catch(error => toaster('Something went wrong'));
     }
 
-    console.log(otpfield);
+    console.log("otp",otpfield);
 
     return (
         <>

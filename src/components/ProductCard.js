@@ -14,11 +14,10 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
         text, setText,
         toasterShow, setToasterShow,
         toasterText, setToasterText,
-        toaster
+        toaster, getUserDetails
     } = useContext(ContextApi);
 
-    console.log(userDetails?.boughtLong);
-
+    console.log(userDetails?.vipLevel);
 
     const [vipColor, setVipColor] = useState('text-[#b3bdc4]')
     const [pop, setpop] = useState(false)
@@ -26,8 +25,8 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
 
     const handelInvest = async () => {
 
-        if (product_type === 'vip' && userDetails.boughtLong === 0) {
-            toaster("Please purchase a Stable plan first")
+        if (product_type > userDetails.vipLevel) {
+            toaster("Insufficient inventory of products availbale for purchase")
         }
         else {
             await axios.post(`${BASE_URL}/purchase`, {
@@ -50,6 +49,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
             }).then(() => {
                 console.log('Product successfully purchased');
                 toaster('Plan purchased!', '/invest');
+                getUserDetails()
                 setpop(!pop)
             }).catch((error) => {
                 console.log('Some error occured', error);
@@ -62,11 +62,12 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
 
 
     useEffect(() => {
-        if (product_type === 'vip') {
+        if (product_type > 0) {
             setVipColor('text-[#ffa74f]')
         }
+        getUserDetails();
 
-    }, [])
+    }, [product_type])
 
 
 

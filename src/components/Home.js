@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Popup from './Popup'
 import Navbar from './Navbar'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import inviteBg from '../images/invitebg.png'
 import { RiVipLine } from 'react-icons/ri'
 import splitNotchL from '../images/notch_L.svg'
@@ -24,7 +24,23 @@ import { ContextApi } from '../App'
 
 const Home = () => {
 
-    const { userDetails, setUserDetails } = useContext(ContextApi);
+    const navigate = useNavigate();
+
+
+    const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
+
+
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+    }, [])
 
 
     return (
@@ -75,7 +91,7 @@ const Home = () => {
                                     </li>
                                     <li className='flex-1'>
                                         <p className='text-lg font-bold text-[#4b4d5e] leading-none' >
-                                            {userDetails?.plans_purchased?.length?.toFixed(2)}
+                                            {userDetails?.plans_purchased?.length}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Order</span>
                                     </li>

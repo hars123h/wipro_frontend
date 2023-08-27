@@ -12,7 +12,7 @@ const Popup = () => {
 
     return (
         <>
-            <div className={`top-0 right-0 bottom-0 left-0 p-5 fixed z-[9999] justify-center items-center flex ${popOpen} `}>
+            <div className={`top-0 right-0 bottom-0 left-0 p-5 fixed z-[999] justify-center items-center flex ${popOpen} `}>
                 <div className="before:content-[''] fixed top-0 left-0 right-0 bottom-0 bg-[rgba(46,46,46,0.1)] z-[1] backdrop-blur-[3px]"></div>
                 {download ?
                     <div className="px-5 pb-5 pt-[50px] max-w-[600px] w-full -top-[20%] relative mx-auto bg-white backdrop-blur-sm shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[15px]">
