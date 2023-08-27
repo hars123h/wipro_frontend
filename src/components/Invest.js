@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 import Tradmark from './Tradmark'
@@ -6,8 +6,12 @@ import hot from '../images/hot.svg'
 import ProductCard from './ProductCard'
 import img202 from '../images/201.png'
 import img302 from '../images/301.png'
+import { ContextApi } from '../App'
 
 const Invest = () => {
+
+    const {userDetails, setUserDetails} = useContext(ContextApi);
+
 
     const [stable, setStable] = useState('-top-[5px] bg-white font-bold text-[#0aa496] text-xl')
     const [welfare, setWelfare] = useState('bg-[rgba(255,255,255,0.3)] text-white text-lg ')

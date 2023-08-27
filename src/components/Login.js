@@ -5,7 +5,7 @@ import BASE_URL from '../api_url';
 import applogo from '../images/appLogo.svg'
 import Tradmark from './Tradmark';
 
-const Login = () => {
+const Login = ({ setUser }) => {
 
     const navigate = useNavigate();
 
@@ -49,6 +49,7 @@ const Login = () => {
                     throw "Could not login/something went wrong";
                 }
                 localStorage.setItem('uid', data.user_details._id);
+                setUser(data.user_details._id)
                 setText('Login Successful!');
                 setTimeout(() => {
                     navigate('/home');
@@ -56,7 +57,7 @@ const Login = () => {
                 }, 1000);
             })
             .catch(error => {
-                //console.log(error);
+                console.log(error);
                 setText('Something went wrong!');
                 setTimeout(() => {
                     setLoading(false);

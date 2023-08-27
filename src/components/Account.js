@@ -1,20 +1,34 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Tradmark from './Tradmark'
 import { RiVipLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import information from '../images/Information.svg'
 import bankcard from '../images/BankCard.svg'
 import LoginPassword from '../images/LoginPassword.svg'
 import PayPassword from '../images/PayPassword.svg'
 import Logoutimg from '../images/LogOut.svg'
+import axios from 'axios'
+import BASE_URL from '../api_url'
+import { ContextApi } from '../App'
 
-const Account = () => {
+const Account = ({ setUser }) => {
+
+    const navigate = useNavigate();
+
+    const {userDetails, setUserDetails} = useContext(ContextApi);
+
 
     const [name, setname] = useState('HI')
     const [mobno, setMobno] = useState(9555890771)
     const [id, setid] = useState(228028)
     const [Balance, setBalance] = useState(25.00)
+
+    const handelSignOut = () => {
+        localStorage.clear();
+        setUser()
+        navigate('/login');
+    }
 
     return (
         <>
@@ -30,8 +44,8 @@ const Account = () => {
                                 <div className="py-5 px-[10px] flex flex-wrap items-center">
 
                                     <div className="flex-1">
-                                        <p className='text-[#4b4d5e] font-bold text-xl'>{name}</p>
-                                        <span className='text-[#818393] text-sm'>{mobno} (ID: {id})</span>
+                                        <p className='text-[#4b4d5e] font-bold text-xl'>{userDetails?.name}</p>
+                                        <span className='text-[#818393] text-sm'>{userDetails?.mobno} (ID: {id})</span>
                                     </div>
 
                                     <Link to={`/vip`} className='flex items-end '>
@@ -47,8 +61,7 @@ const Account = () => {
                                         <div className="">
                                             <h3 className='text-[28px] font-bold text-white leading-none' >
                                                 <em className='mr-1 p-0 px-[2px] border-0 text-base font-light align-top not-italic leading-none '>₹</em>
-                                                {/* {amount}  */}
-                                                {`25.00`}
+                                                {userDetails?.balance?.toFixed(2)}
                                             </h3>
                                             <span className='text-sm text-white opacity-80 leading-none'>Balance</span>
                                         </div>
@@ -63,7 +76,7 @@ const Account = () => {
 
                                         <div className="px-5 ml-[10px] bg-[#0aa496] text-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px] ">
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            0.00 Withdraw
+                                            {userDetails?.withdrawal_sum?.toFixed(2)} Withdraw
                                         </div>
 
 
@@ -202,7 +215,7 @@ const Account = () => {
                                             <img src={Logoutimg} alt="information" className='w-4/5' />
                                         </div>
 
-                                        <div className="flex flex-wrap items-center flex-1">
+                                        <div className="flex flex-wrap items-center flex-1" onClick={handelSignOut}>
                                             <div className="whitespace-normal break-words break-all">
                                                 <p className='text-[rgba(255,87,40,0.9)] text-base whitespace-normal break-all'>LogOut</p>
                                             </div>

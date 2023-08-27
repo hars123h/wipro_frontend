@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import axios from 'axios'
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import BASE_URL from '../api_url';
 import { toast } from 'react-toastify'
 import { ContextApi } from '../App';
 import logo from '../images/logo (1).svg'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import applogo from '../images/appLogo.svg'
+import tradelogo from '../images/logo_g.svg'
 import Tradmark from './Tradmark';
 
 const Register = () => {
@@ -14,28 +15,26 @@ const Register = () => {
     const navigate = useNavigate();
     // const { setUser } = useContext(ContextApi);
 
+    const {
+        userDetails, setUserDetails,
+        loading, setLoading,
+        text, setText,
+        toasterShow, setToasterShow,
+        toasterText, setToasterText,
+        toaster
+    } = useContext(ContextApi);
+
+    const [search, setSearch] = useSearchParams();
+
     const [otpfield, setOTPfield] = useState('');
     const [otp, setOtp] = useState('');
     const [mobno, setMobno] = useState('')
     const [pwd, setPwd] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [invt, setInvt] = useState('egxixb');
-    // capture invt from useParam
-    const [loading, setLoading] = useState(false);
-    const [text, setText] = useState('Loading');
-    const [toasterShow, setToasterShow] = useState(false);
-    const [toasterText, setToasterText] = useState('');
+    const [invt, setInvt] = useState(search.get('invitation_code') || 'egxixb');
     const [secret, setSecret] = useState('password')
 
-    const toaster = (text) => {
-        setToasterText(text);
-        setToasterShow(true);
-        setTimeout(() => {
-            setToasterShow(false);
-            //navigate('/mine');
-        }, 5000);
-    }
 
     const secrethandel = () => {
         if (secret === 'password') {
@@ -90,7 +89,7 @@ const Register = () => {
                     }, 2000);
                 } else {
                     setText('registration success');
-                    localStorage.setItem('uid', data.user_id);
+                    // localStorage.setItem('uid', data.user_id);
                     setMobno('');
                     setPwd('');
                     // setInvt('');
@@ -99,7 +98,7 @@ const Register = () => {
                     setOTPfield('')
                     setOtp('')
                     setTimeout(() => {
-                        navigate('/login');
+                        navigate('/home');
                         setLoading(false);
                     }, 2000);
                 }
@@ -127,29 +126,6 @@ const Register = () => {
 
     return (
         <>
-
-            {toasterShow &&
-                <div className='top-0 left-0 right-0 bottom-0 p-5 z-[999] fixed flex items-center'>
-                    <div className="before:content-[''] fixed top-0 left-0 right-0 bottom-0 bg-[rgba(46,46,46,0.1)] z-[1] backdrop-blur-[3px]"></div>
-                    <div className="flex items-start bg-[rgba(201,174,20,0.9)] max-w-[250px] p-5 -top-5 relative w-full mx-auto shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[7px] ">
-                        <div className="flex-1 p-[5px]">
-                            <p className='text-base text-white'>{toasterText}</p>
-                        </div>
-                    </div>
-                </div>
-            }
-
-            {loading &&
-                <div className='top-0 left-0 right-0 bottom-0 p-5 z-[999] fixed flex items-center'>
-                    <div className="before:content-[''] fixed top-0 left-0 right-0 bottom-0 bg-[rgba(46,46,46,0.1)] z-[1] backdrop-blur-[3px]"></div>
-                    <div className="flex items-start bg-[rgba(75,169,88,0.9)] max-w-[250px] p-5 -top-5 relative w-full mx-auto shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[7px] ">
-                        <div className="flex-1 p-[5px]">
-                            <p className='text-base text-white'>{text}</p>
-                        </div>
-                    </div>
-                </div>
-            }
-
 
             <div className="signupMain bgimg01 after:bg-white">
 

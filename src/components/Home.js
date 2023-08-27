@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Popup from './Popup'
 import Navbar from './Navbar'
 import { Link } from 'react-router-dom'
@@ -18,21 +18,21 @@ import img301 from '../images/301.png'
 import Card from './Card'
 import { HiOutlineChevronDoubleRight } from 'react-icons/hi'
 import Tradmark from './Tradmark'
+import { ContextApi } from '../App'
 
 
 
 const Home = () => {
 
-    const [invest, setInvest] = useState(100);
-    const [account, setAccount] = useState();
-    const [share, setShare] = useState();
+    const { userDetails, setUserDetails } = useContext(ContextApi);
+
 
     return (
         <>
             {/* popup */}
             <Popup />
 
-            <div className="mx-auto mb-28 bgimg">
+            <div className="mx-auto mb-28 bgimg overflow-hidden">
                 <div className="w-full mx-auto max-w-[800px]" >
 
                     <Link to={`/invite`}>
@@ -62,24 +62,20 @@ const Home = () => {
                                     <li className='w-full mb-5'>
                                         <p className='text-[26px] font-bold text-[#4b4d5e] leading-none' >
                                             <em className='mr-1 p-0 px-[2px] border-0 text-base font-light align-top not-italic leading-none '>₹</em>
-                                            {/* {amount}  */}
-                                            {` 25.00`}
+                                            {userDetails?.balance.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Balance</span>
                                     </li>
                                     <li className='flex-1'>
                                         <p className='text-lg font-bold text-[#4b4d5e] leading-none' >
                                             <span className='mr-1 px-[2px] text-base leading-none border-0 font-light align-top'>₹</span>
-
-                                            {/* {earning}  */}
-                                            {` 0.00`}
+                                            {userDetails?.earning?.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total Earnings</span>
                                     </li>
                                     <li className='flex-1'>
                                         <p className='text-lg font-bold text-[#4b4d5e] leading-none' >
-                                            {/* {order}  */}
-                                            0
+                                            {userDetails?.plans_purchased?.length?.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Order</span>
                                     </li>
