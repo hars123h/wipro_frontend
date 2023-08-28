@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import { Link } from 'react-router-dom'
-import applogo from '../images/appLogo.svg'
+import applogo from '../images/appLogo.png'
 import telegram from '../images/telegram.svg'
 
 const Popup = () => {

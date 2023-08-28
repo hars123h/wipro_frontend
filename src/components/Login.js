@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom';
 import BASE_URL from '../api_url';
-import applogo from '../images/appLogo.svg'
+import applogo from '../images/appLogo.png'
 import Tradmark from './Tradmark';
 import { ContextApi } from '../App';
 
@@ -81,7 +81,7 @@ const Login = () => {
 
                             <div className="mx-[10px] px-[10px]">
                                 <h4 className='text-[32px] text-[#1f3d70] font-bold '>Hello!</h4>
-                                <p className='text-xl leading-none'>Welcome to Wipro.</p>
+                                <p className='text-xl leading-none'>Welcome to Kraft.</p>
                             </div>
 
                             <div className="bg-white mt-5 mb-[50px] mx-[10px] pt-10 px-5 pb-5 relative rounded-lg">
@@ -154,7 +154,7 @@ const Login = () => {
                                 </div>
 
                                 <Link to={`/download`} className="flex-1 ml-[10px]">
-                                    <h3 className='p-0 m-0 text-2xl text-[#3468a3] font-bold'>Wipro</h3>
+                                    <h3 className='p-0 m-0 text-2xl text-[#3468a3] font-bold'>Kraft</h3>
                                     <p className=' p-0 m-0 pb-[10px] text-base leading-none text-[#818393]'>
                                         Rest assured financial management, quality service, low risk investment, 100% return
                                     </p>

@@ -5,7 +5,7 @@ import BASE_URL from '../api_url';
 import { ContextApi } from '../App';
 import logo from '../images/logo (1).svg'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-import applogo from '../images/appLogo.svg'
+import applogo from '../images/appLogo.png'
 import tradelogo from '../images/logo_g.svg'
 import Tradmark from './Tradmark';
 
@@ -134,7 +134,7 @@ const Register = () => {
 
                                 <div className="w-full rounded-2xl mb-8">
 
-                                    <img src={logo} alt="logo" className='max-h-[100px] inline-block relative' />
+                                    <img src={applogo} alt="logo" className='max-h-[100px] inline-block relative' />
 
                                 </div>
 
@@ -265,7 +265,7 @@ const Register = () => {
                                 </div>
 
                                 <Link to={`/download`} className="flex-1 ml-[10px]">
-                                    <h3 className='p-0 m-0 text-2xl text-[#3468a3] font-bold'>Wipro</h3>
+                                    <h3 className='p-0 m-0 text-2xl text-[#3468a3] font-bold'>Kraft</h3>
                                     <p className=' p-0 m-0 pb-[10px] text-base leading-none text-[#818393]'>
                                         Rest assured financial management, quality service, low risk investment, 100% return
                                     </p>
