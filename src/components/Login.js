@@ -11,11 +11,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const {
-        user, setUser,
-        loading, setLoading,
-        text, setText,
-        toasterShow, setToasterShow,
-        toasterText, setToasterText,
+        setLoading,
         toaster
     } = useContext(ContextApi);
 
@@ -39,7 +35,6 @@ const Login = () => {
             return;
         }
         setLoading(true);
-        setText('Loading')
 
         await axios.post(`${BASE_URL}/login`, { mobno, pwd })
             .then(({ data }) => {
@@ -47,8 +42,7 @@ const Login = () => {
                     throw "Could not login/something went wrong";
                 }
                 localStorage.setItem('uid', data.user_details._id);
-                setUser(data.user_details._id)
-                setText('Login Successful!');
+                // setUser(data.user_details._id)
                 setTimeout(() => {
                     navigate('/home');
                     setLoading(false);
@@ -56,17 +50,17 @@ const Login = () => {
             })
             .catch(error => {
                 console.log(error);
-                setText('Something went wrong!');
                 setTimeout(() => {
                     setLoading(false);
+                    toaster("Some thing went wrong")
                 }, 1000);
             });
     }
 
     useEffect(() => {
-      getBlockedUsers();
+        getBlockedUsers();
     }, [])
-    
+
 
     return (
         <>
