@@ -63,7 +63,7 @@ const Invest = () => {
                 <div className="w-full mx-auto max-w-[800px]" >
 
                     <Link to={`/orders`}>
-                        <div className='max-w-full min-h-[90px] mx-auto bg-[#4c8dcb] invite pb-[120px] ' >
+                        <div className='max-w-full min-h-[90px] mx-auto bg-[rgb(1,77,173)] invite pb-[120px] ' >
 
                             <div className="relative z-10 flex flex-wrap items-start pt-5 px-5 pb-[10px]">
 

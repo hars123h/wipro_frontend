@@ -52,7 +52,7 @@ const Home = () => {
                 <div className="w-full mx-auto max-w-[800px]" >
 
                     <Link to={`/invite`}>
-                        <div className='max-w-full min-h-[90px] mx-auto bg-[#0aa496] invite ' >
+                        <div className='max-w-full min-h-[90px] mx-auto bg-[#ff6766] invite ' >
 
                             <div className="relative z-[1]">
                                 <img src={inviteBg} alt="" className='w-full' />
@@ -228,7 +228,7 @@ const Home = () => {
                                 <div className="flex-1 ">
 
                                     <Card
-                                        // img={img201}
+                                        img={img301}
                                         title={'Welfare release'}
                                         content={'Today&#39s system has been updated, it will be more stable and secure, so 2 super event products will be sent to users again'}
                                         timestamp={'2023-08-22 20:08:42'}
