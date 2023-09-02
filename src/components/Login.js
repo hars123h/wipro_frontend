@@ -12,7 +12,8 @@ const Login = () => {
 
     const {
         setLoading,
-        toaster
+        toaster,
+        setUser
     } = useContext(ContextApi);
 
     const [mobno, setmobno] = useState('');
@@ -42,7 +43,7 @@ const Login = () => {
                     throw "Could not login/something went wrong";
                 }
                 localStorage.setItem('uid', data.user_details._id);
-                // setUser(data.user_details._id)
+                setUser(data.user_details._id)
                 setTimeout(() => {
                     navigate('/home');
                     setLoading(false);

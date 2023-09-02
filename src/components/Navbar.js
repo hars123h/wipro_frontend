@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { AiFillHome } from 'react-icons/ai'
 import { PiNotebookBold } from 'react-icons/pi'
 import { RiShieldUserLine } from 'react-icons/ri'
+import { FaHome } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import hNav from '../images/home.jpg'
 import iNav from '../images/invest.png'
 
 
@@ -79,24 +79,25 @@ const Navbar = () => {
             <div className="mx-auto bg-white shadow-[0_-3px_30px_1px_rgba(0,40,14,0.3)] backdrop-blur-[5px] rounded-[500px] ">
                 <ul className='flex items-center'>
                     <Link to={`/home`} className={` ${home} text-center block relative flex-1 no-underline`}>
-                        <div className={` w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
-                            {/* <PiNotebookBold size={28} className={`${homeIcon} mx-auto inline-block `} /> */}
-                            <img src={hNav} alt="home icon" className='w-7 h-7' />
+                        <div className={`${homediv} w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
+                            <FaHome size={28} className={`${homeIcon} mx-auto inline-block `} />
+                            {/* <img src={hNav} alt="home icon" className='w-7 h-7' /> */}
                         </div>
                         <p className={`${homeText}`}>Home</p>
                     </Link>
 
                     <Link to={`/invest`} className={`${invest} text-center block relative flex-1 no-underline`}>
-                        <div className={` w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
+                        <div className={`${investdiv} w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
                             {/* <PiNotebookBold size={28} className={`${investIcon} mx-auto inline-block `} /> */}
-                            <img src={iNav} alt="home icon" className='w-7 h-7' />
+                            <img src={iNav} alt="home icon" className='w-7 h-7 ' />
+                            
                         </div>
                         <p className={`${investText}`}>Invest</p>
                     </Link>
 
                     <Link to={`/account`} className={`${account} text-center block relative flex-1 no-underline`}>
-                        <div className={` w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
-                            <RiShieldUserLine size={28} className={`text-[#00aa75] mx-auto inline-block `} />
+                        <div className={`${accountdiv} w-11 h-11 mx-auto relative rounded-[50%] flex justify-center items-center`}>
+                            <RiShieldUserLine size={28} className={`${accountIcon} mx-auto inline-block `} />
                         </div>
                         <p className={`${accountText}`}>Account</p>
                     </Link>

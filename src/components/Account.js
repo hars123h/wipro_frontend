@@ -67,7 +67,7 @@ const Account = () => {
 
                                 </div>
 
-                                <div className="p-5 bg-[#1f3d70] backdrop-blur-[5px] shadow-[rgba(0,0,0,0.03)_0px_0px_10px_5px] rounded-[15px]">
+                                <div className="p-5 bg-[rgb(1,77,173)] backdrop-blur-[5px] shadow-[rgba(0,0,0,0.03)_0px_0px_10px_5px] rounded-[15px]">
 
                                     <div className="mb-5 justify-between items-center flex flex-wrap">
 
@@ -83,14 +83,14 @@ const Account = () => {
 
                                     <div className="w-full justify-end items-stretch flex flex-wrap">
 
-                                        <div className="px-5 text-[#0aa496] bg-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px]  ">
+                                        <Link to={'/deposit'} className="px-5 text-[#0aa496] bg-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px]  ">
                                             Deposit
-                                        </div>
+                                        </Link>
 
-                                        <div className="px-5 ml-[10px] bg-[#0aa496] text-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px] ">
+                                        <Link to={'/widthdrawl'} className="px-5 ml-[10px] bg-[#0aa496] text-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px] ">
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
                                             {userDetails?.withdrawal_sum?.toFixed(2)} Withdraw
-                                        </div>
+                                        </Link>
 
 
                                     </div>
@@ -101,15 +101,15 @@ const Account = () => {
 
                             <div className="flex px-[5px] pb-[10px] flex-wrap">
 
-                                <div className="w-1/2 px-[5px] pt-[5px] text-left">
+                                <Link to={'/deposit_records'} className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            0.00
+                                            {userDetails?.recharge_amount.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total deposits</span>
                                     </div>
-                                </div>
+                                </Link>
 
                                 <div className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
@@ -125,7 +125,7 @@ const Account = () => {
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             {/* <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em> */}
-                                            0
+                                            {userDetails?.plans_purchased?.length}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>My order</span>
                                     </div>
@@ -135,7 +135,7 @@ const Account = () => {
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            0.00
+                                            {userDetails?.earning?.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total earnings</span>
                                     </div>
@@ -180,7 +180,7 @@ const Account = () => {
 
                                     </div>
 
-                                    <div className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
+                                    <Link to={'/bankcard'} className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
 
                                         <div className="flex justify-center items-center mr-[10px] w-[35px] h-[35px] relative rounded-[50%]">
                                             <img src={bankcard} alt="information" className='w-4/5' />
@@ -192,7 +192,7 @@ const Account = () => {
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </Link>
 
                                     <div className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
 
@@ -222,13 +222,13 @@ const Account = () => {
 
                                     </div>
 
-                                    <div className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
+                                    <div onClick={handelSignOut} className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
 
                                         <div className="flex justify-center items-center mr-[10px] w-[35px] h-[35px] relative rounded-[50%]">
                                             <img src={Logoutimg} alt="information" className='w-4/5' />
                                         </div>
 
-                                        <div className="flex flex-wrap items-center flex-1" onClick={handelSignOut}>
+                                        <div className="flex flex-wrap items-center flex-1" >
                                             <div className="whitespace-normal break-words break-all">
                                                 <p className='text-[rgba(255,87,40,0.9)] text-base whitespace-normal break-all'>LogOut</p>
                                             </div>

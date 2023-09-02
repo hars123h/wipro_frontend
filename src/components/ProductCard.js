@@ -17,47 +17,56 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
         toaster, getUserDetails
     } = useContext(ContextApi);
 
-    console.log(userDetails?.vipLevel);
-
     const [vipColor, setVipColor] = useState('text-[#b3bdc4]')
     const [pop, setpop] = useState(false)
     const [quantity, setQuantity] = useState(1)
 
     const handelInvest = async () => {
+        if (quantity <= 0) {
+            toaster('Please a positive value!');
+        } else {
+            if ((Number(quantity) * Number(plan_amount)) > Number(userDetails.recharge_amount)) {
+                toaster("The available balance is insufficient, please recharge");
+                // setBalanceIndicator(true);
+                // setTimeout(() => {
+                //     setBalanceIndicator(false);
+                // }, 3000);
+            }
 
-        if (product_type > userDetails.vipLevel) {
-            toaster("Insufficient inventory of products availbale for purchase")
+            else if (product_type > userDetails.vipLevel) {
+                toaster("Insufficient inventory of products availbale for purchase")
+            }
+            else {
+                await axios.post(`${BASE_URL}/purchase`, {
+                    balance: Number(userDetails.recharge_amount) - Number(Number(quantity) * Number(plan_amount)),
+                    boughtLong: (product_type === 'vip' ? 1 : 0),
+                    boughtShort: (product_type === '' ? 1 : 0),
+                    user_id: localStorage.getItem('uid'),
+                    parent_id: userDetails.parent_id,
+                    grand_parent_id: userDetails.grand_parent_id,
+                    great_grand_parent_id: userDetails.great_grand_parent_id,
+                    plan_price: plan_amount,
+                    plans_purchased: {
+                        product_type, plan_name, plan_type, plan_amount, plan_daily_earning, plan_cycle,
+                        quantity: quantity,
+                        date_purchased: new Date().toDateString(),
+                        date_till_rewarded: new Date().toDateString(),
+                        time: new Date().toDateString(),
+                        ddmmyy: new Date().getMilliseconds()
+                    }
+                }).then(() => {
+                    console.log('Product successfully purchased');
+                    toaster('Plan purchased!');
+                    getUserDetails()
+                    setpop(!pop)
+                }).catch((error) => {
+                    console.log('Some error occured', error);
+                    toaster('Some error occured, try again after some time');
+                })
+
+            }
+
         }
-        else {
-            await axios.post(`${BASE_URL}/purchase`, {
-                recharge_amount: Number(userDetails.recharge_amount) - Number(Number(quantity) * Number(plan_amount)),
-                boughtLong: (product_type === 'vip' ? 1 : 0),
-                boughtShort: (product_type === '' ? 1 : 0),
-                user_id: localStorage.getItem('uid'),
-                parent_id: userDetails.parent_id,
-                grand_parent_id: userDetails.grand_parent_id,
-                great_grand_parent_id: userDetails.great_grand_parent_id,
-                plan_price: plan_amount,
-                plans_purchased: {
-                    product_type, plan_name, plan_type, plan_amount, plan_daily_earning, plan_cycle,
-                    quantity: quantity,
-                    date_purchased: new Date().toDateString(),
-                    date_till_rewarded: new Date().toDateString(),
-                    time: new Date().toDateString(),
-                    ddmmyy: new Date().getMilliseconds()
-                }
-            }).then(() => {
-                console.log('Product successfully purchased');
-                toaster('Plan purchased!', '/invest');
-                getUserDetails()
-                setpop(!pop)
-            }).catch((error) => {
-                console.log('Some error occured', error);
-                toaster('Some error occured, try again after some time');
-            })
-
-        }
-
     }
 
 
@@ -250,7 +259,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                 <div className="shadow-[0_-3px_30px_1px_rgba(80,35,0,0.1)] p-[10px] bg-white backdrop-blur-sm relative rounded-[7px] ">
 
                     <div className="mb-[10px] max-h-[120px] overflow-hidden bg-center bg-no-repeat bg-[length:90%_90%] cardBg bg-[#f8f8f8] rounded-[3px]">
-                        <img src={product_image} alt="" className='w-full' />
+                        <img src={product_image} alt="" className={`w-full ${product_type === 0 ? 'relative -top-36' : ''} `} />
                     </div>
 
                     <div className="mb-[10px]">
