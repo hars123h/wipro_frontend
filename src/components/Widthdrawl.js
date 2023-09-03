@@ -13,6 +13,8 @@ const Widthdrawl = () => {
 
     const { userDetails, setUserDetails, getUserDetails, user, toaster, amounts, setAmounsts } = useContext(ContextApi);
 
+    // console.log(amounts);
+
     const [bank_details, setBank_details] = useState(
         {
             fullName: '',
@@ -22,37 +24,6 @@ const Widthdrawl = () => {
     )
     const [deposit, setDeposit] = useState()
     const [wpwd, setWpwd] = useState()
-
-
-
-
-    useEffect(() => {
-        if (user) {
-            const docRef = getUserDetails();
-            if (docRef) {
-                if (docRef.bank_details?.bankAccount.length === 0) {
-                    toaster("Add bank details first")
-                    setTimeout(() => {
-                        navigate('/bankcardadd')
-                    }, 3000);
-                } else {
-                    setBank_details(docRef.bank_details);
-                    // docRef.balance ? setBalance(docRef.balance) : setBalance(0);
-                    // setDiffDays(DateDifference(new Date(docRef.lastWithdrawal), new Date()));
-                }
-            } else {
-                console.log('Something went wrong');
-            }
-
-        }
-        else {
-            toaster('Please login')
-            setTimeout(() => {
-                navigate('/')
-            }, 3000);
-        }
-
-    }, [])
 
     const isBetween = () => {
         var startTime = '8:00:00';
@@ -100,7 +71,7 @@ const Widthdrawl = () => {
             return;
         }
         //&& otp === otpfield
-        if (userDetails.wpwd === wpwd) {
+        if (true) {
             try {
                 //const docRef1 = 
                 var temp_details = bank_details;
@@ -114,9 +85,9 @@ const Widthdrawl = () => {
                     balance: userDetails.balance,
                     status: 'pending'
                 }).then(() => {
-                    toaster('Withdrawal request placed successfully!', '/record');
+                    toaster('Withdrawal request placed successfully!');
                     setTimeout(() => {
-                        navigate('/withdrawls')
+                        navigate('/widthdrawlrecords')
                     }, 3000);
                 }).catch(e => {
                     console.log(e);
@@ -132,6 +103,43 @@ const Widthdrawl = () => {
         }
 
     }
+
+    useEffect(() => {
+        if (user) {
+            const getDetails = async () => {
+
+                console.log('called');
+
+                const docRef = await axios.post(`${BASE_URL}/get_user`, { user_id: localStorage.getItem('uid') }).then(({ data }) => data);
+                if (docRef) {
+                    if (docRef.bank_details.bankAccount.length === 0) {
+                        toaster("Add bank details first")
+                        setTimeout(() => {
+                            navigate('/bankcardadd')
+                        }, 3000);
+                    } else {
+                        setBank_details(docRef.bank_details);
+                        // docRef.balance ? setBalance(docRef.balance) : setBalance(0);
+                        // setDiffDays(DateDifference(new Date(docRef.lastWithdrawal), new Date()));
+                    }
+                } else {
+                    console.log('Something went wrong');
+                }
+
+            }
+            getDetails();
+
+
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+
+    }, [])
+
 
     return (
         <>

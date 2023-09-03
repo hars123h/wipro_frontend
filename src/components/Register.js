@@ -15,8 +15,8 @@ const Register = () => {
 
     const {
         setLoading,
-        setText,
-        toaster
+        toaster,
+        
     } = useContext(ContextApi);
 
     const [search, setSearch] = useSearchParams();
@@ -27,7 +27,7 @@ const Register = () => {
     const [pwd, setPwd] = useState('')
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [invt, setInvt] = useState(search.get('invitation_code') || 'egxixb');
+    const [invt, setInvt] = useState(search.get('invitation_code'));
     const [secret, setSecret] = useState('password')
 
 
@@ -49,21 +49,21 @@ const Register = () => {
             return;
         }
 
-        if (pwd.length < 6) {
+        else if (pwd.length < 6) {
             toaster('Password must contain at least 6 characters!');
             return;
         }
 
-        if (validatePassword(pwd) === false) {
+        else if (validatePassword(pwd) === false) {
             toaster('Password must contain letters and numbers or special symbols');
             return;
         }
 
-        if (name.length === 0) {
+        else if (name.length === 0) {
             toaster('Nick Name Should not be empty')
         }
 
-        if (otp !== otpfield) {
+        else if (otp !== otpfield) {
             toaster('Wrong OTP entered!');
             return;
         }
@@ -73,17 +73,17 @@ const Register = () => {
         await axios.post(`${BASE_URL}/register`, { mobno, pwd, name, email, invt })
             .then(({ data }) => {
                 if (data.message === 'Mobile Number already registered!') {
-                    setText('Mobile Number already registered!');
+                    toaster('Mobile Number already registered!');
                     setTimeout(() => {
                         setLoading(false);
                     }, 2000);
                 } else if (data.message === 'invalid invite code') {
-                    setText('invalid invite code!');
+                    toaster('invalid invite code!');
                     setTimeout(() => {
                         setLoading(false);
                     }, 2000);
                 } else {
-                    setText('registration success');
+                    toaster('registration success');
                     // localStorage.setItem('uid', data.user_id);
                     setMobno('');
                     setPwd('');
@@ -100,6 +100,7 @@ const Register = () => {
             })
             .catch((error) => {
                 toaster('Something went wrong');
+                setLoading(false)
                 console.error(error);
             });
     }

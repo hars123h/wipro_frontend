@@ -89,7 +89,7 @@ const Account = () => {
 
                                         <Link to={'/widthdrawl'} className="px-5 ml-[10px] bg-[#0aa496] text-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px] ">
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            {userDetails?.withdrawal_sum?.toFixed(2)} Withdraw
+                                            {(Number(userDetails?.earning)-Number(userDetails.withdrawal_sum)).toFixed(2)} Withdraw
                                         </Link>
 
 
@@ -111,15 +111,15 @@ const Account = () => {
                                     </div>
                                 </Link>
 
-                                <div className="w-1/2 px-[5px] pt-[5px] text-left">
+                                <Link to={'/widthdrawlrecords'} className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            0.00
+                                            {userDetails?.withdrawal_sum?.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total withdrawal</span>
                                     </div>
-                                </div>
+                                </Link>
 
                                 <div className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">

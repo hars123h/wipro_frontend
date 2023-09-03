@@ -18,6 +18,7 @@ import DepositRecords from './components/DepositRecords';
 import BankCard from './components/BankCard';
 import BankCardAdd from './components/BankCardAdd';
 import Widthdrawl from './components/Widthdrawl';
+import WidthdrawlRecords from './components/WidthdrawlRecords';
 
 export const ContextApi = createContext();
 
@@ -28,6 +29,7 @@ function App() {
   const [toasterShow, setToasterShow] = useState(false);
   const [toasterText, setToasterText] = useState('');
   const [userDetails, setUserDetails] = useState();
+  const [amounts, setAmounsts] = useState({});
 
   const toaster = useCallback((text) => {
     setToasterText(text);
@@ -61,13 +63,12 @@ function App() {
     const dataRes = await axios.get(`${BASE_URL}/amounts`).then(({ data }) => data);
     //console.log(dataRes);
     if (dataRes) {
-      //console.log(dataRes.data());
-      setAmounsts(dataRes.data);
+      // console.log(dataRes);
+      setAmounsts(dataRes);
     }
 
   }
 
-  const [amounts, setAmounsts] = useState({});
 
   useEffect(() => {
     getData();
@@ -125,6 +126,7 @@ function App() {
             <Route path='/bankCard' element={<BankCard />} />
             <Route path='/bankCardAdd' element={<BankCardAdd />} />
             <Route path='/widthdrawl' element={<Widthdrawl />} />
+            <Route path='/widthdrawlrecords' element={<WidthdrawlRecords />} />
           </Routes>
 
         </BrowserRouter>
