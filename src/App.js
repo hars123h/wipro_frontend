@@ -19,6 +19,8 @@ import BankCard from './components/BankCard';
 import BankCardAdd from './components/BankCardAdd';
 import Widthdrawl from './components/Widthdrawl';
 import WidthdrawlRecords from './components/WidthdrawlRecords';
+import WpasswordChange from './components/WpasswordChange';
+import WithdrawlPassword from './components/WithdrawlPassword';
 
 export const ContextApi = createContext();
 
@@ -72,6 +74,7 @@ function App() {
 
   useEffect(() => {
     getData();
+    getUserDetails();
   }, [])
 
 
@@ -127,6 +130,8 @@ function App() {
             <Route path='/bankCardAdd' element={<BankCardAdd />} />
             <Route path='/widthdrawl' element={<Widthdrawl />} />
             <Route path='/widthdrawlrecords' element={<WidthdrawlRecords />} />
+            <Route path='/changewidthdrawlpassword' element={<WpasswordChange />} />
+            <Route path='/widthdrawlpassword' element={<WithdrawlPassword />} />
           </Routes>
 
         </BrowserRouter>

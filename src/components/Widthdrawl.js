@@ -15,13 +15,15 @@ const Widthdrawl = () => {
 
     // console.log(amounts);
 
-    const [bank_details, setBank_details] = useState(
-        {
-            fullName: '',
-            bankAccount: '',
-            ifsc: '',
-        }
-    )
+    // const [bank_details, setBank_details] = useState(
+    //     {
+    //         fullName: '',
+    //         bankAccount: '',
+    //         ifsc: '',
+    //     }
+    // )
+    const [bank_details, setBank_details] = useState(userDetails?.bank_details)
+
     const [deposit, setDeposit] = useState()
     const [wpwd, setWpwd] = useState()
 
@@ -106,30 +108,7 @@ const Widthdrawl = () => {
 
     useEffect(() => {
         if (user) {
-            const getDetails = async () => {
-
-                console.log('called');
-
-                const docRef = await axios.post(`${BASE_URL}/get_user`, { user_id: localStorage.getItem('uid') }).then(({ data }) => data);
-                if (docRef) {
-                    if (docRef.bank_details.bankAccount.length === 0) {
-                        toaster("Add bank details first")
-                        setTimeout(() => {
-                            navigate('/bankcardadd')
-                        }, 3000);
-                    } else {
-                        setBank_details(docRef.bank_details);
-                        // docRef.balance ? setBalance(docRef.balance) : setBalance(0);
-                        // setDiffDays(DateDifference(new Date(docRef.lastWithdrawal), new Date()));
-                    }
-                } else {
-                    console.log('Something went wrong');
-                }
-
-            }
-            getDetails();
-
-
+            getUserDetails()
         }
         else {
             toaster('Please login')
@@ -137,8 +116,27 @@ const Widthdrawl = () => {
                 navigate('/')
             }, 3000);
         }
-
     }, [])
+
+    useEffect(() => {
+
+        if (!userDetails?.wpwd) {
+            toaster('Set Trade Password')
+            setTimeout(() => {
+                navigate('/widthdrawlpassword')
+            }, 3000);
+        }
+
+        else if (userDetails?.bank_details.bankAccount.length === 0) {
+            toaster("Add bank details first")
+            setTimeout(() => {
+                navigate('/bankcardadd')
+            }, 3000);
+        }
+    }, [])
+
+
+    // console.log(bank_details,'withdrawl');
 
 
     return (
@@ -166,7 +164,7 @@ const Widthdrawl = () => {
                                 <div className="mt-[10px]">
                                     <h3 className='text-[30px] font-bold text-white leading-none' >
                                         <em className='mr-1 p-0 px-[2px] border-0 text-base font-light align-top not-italic leading-none '>₹</em>
-                                        {userDetails?.earning?.toFixed(2)}
+                                        {(Number(userDetails?.earning) - Number(userDetails?.withdrawal_sum)).toFixed(2)}
                                     </h3>
                                     <span className='text-base text-[#fffc] opacity-80 leading-none'>Withdrawable account balance</span>
                                 </div>

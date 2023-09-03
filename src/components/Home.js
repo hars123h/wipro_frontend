@@ -40,6 +40,14 @@ const Home = () => {
                 navigate('/')
             }, 3000);
         }
+
+        if (!userDetails?.wpwd) {
+            // toaster('Please login')
+            // setTimeout(() => {
+                navigate('/widthdrawlpassword')
+            // }, 3000);
+        }
+
     }, [])
 
 
