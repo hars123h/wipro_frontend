@@ -41,14 +41,17 @@ const Home = () => {
             }, 3000);
         }
 
-        if (!userDetails?.wpwd) {
-            // toaster('Please login')
-            // setTimeout(() => {
-                navigate('/widthdrawlpassword')
-            // }, 3000);
-        }
-
     }, [])
+
+    useEffect(() => {
+        if (!userDetails?.wpwd) {
+            toaster('Set Trade Password')
+            setTimeout(() => {
+                navigate('/widthdrawlpassword')
+            }, 3000);
+        }
+    }, [])
+    
 
 
     return (
