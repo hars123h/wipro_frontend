@@ -89,7 +89,7 @@ const Account = () => {
 
                                         <Link to={'/widthdrawl'} className="px-5 ml-[10px] bg-[#0aa496] text-white font-bold h-[35px] leading-9 text-sm text-center rounded-[500px] ">
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            {(Number(userDetails?.earning)-Number(userDetails.withdrawal_sum)).toFixed(2)} Withdraw
+                                            {(Number(userDetails?.earning)-Number(userDetails?.withdrawal_sum)).toFixed(2)} Withdraw
                                         </Link>
 
 
