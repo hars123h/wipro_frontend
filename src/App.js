@@ -22,6 +22,7 @@ import WidthdrawlRecords from './components/WidthdrawlRecords';
 import WpasswordChange from './components/WpasswordChange';
 import WithdrawlPassword from './components/WithdrawlPassword';
 import ChangePassword from './components/ChangePassword';
+import ForgotPassword from './components/ForgotPassword';
 
 export const ContextApi = createContext();
 
@@ -134,6 +135,7 @@ function App() {
             <Route path='/changewidthdrawlpassword' element={<WpasswordChange />} />
             <Route path='/widthdrawlpassword' element={<WithdrawlPassword />} />
             <Route path='/changepassword' element={<ChangePassword />} />
+            <Route path='/forgotpassword' element={<ForgotPassword />} />
           </Routes>
 
         </BrowserRouter>
