@@ -10,7 +10,7 @@ const BankCardAdd = () => {
     const navigate = useNavigate();
 
 
-    const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
+    const { userDetails, setUserDetails, getUserDetails, user, toaster,setLoading } = useContext(ContextApi);
 
     const [details, setDetails] = useState(
         {
@@ -34,13 +34,17 @@ const BankCardAdd = () => {
     const handleSubmit = async () => {
         // console.log(userDetails.wpwd,wpwd);
         if (userDetails.wpwd === wpwd) {
+            setLoading(true)
             await axios.post(`${BASE_URL}/bank_details`, { user_id: localStorage.getItem('uid'), bank_details: details })
                 .then(() => {
+                    setLoading(false)
                     toaster('Bank details added successfully!');
+                    navigate('/account')
                 })
-                .catch(() => toaster('Some error Occured')
+                .catch(() => {setLoading(false); toaster('Some error Occured')}
                 );
         } else {
+            setLoading(false)
             toaster('Incorrect withdrawal password!');
         }
     }
@@ -68,7 +72,7 @@ const BankCardAdd = () => {
                     <div className="max-w-[600px] w-full -top-[20%] relative mx-auto p-5 bg-white backdrop-blur-sm shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[15px]">
                         <div className="">
 
-                            <h4 className='font-bold my-[5px] text-lg text-[#333]'>Add Bank Account</h4>
+                            <h4 className='font-bold my-[5px] text-lg text-[#333]'>Trade Password</h4>
 
                             <div className="py-[5px] mb-5 relative">&nbsp;</div>
 

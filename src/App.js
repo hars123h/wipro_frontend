@@ -23,6 +23,7 @@ import WpasswordChange from './components/WpasswordChange';
 import WithdrawlPassword from './components/WithdrawlPassword';
 import ChangePassword from './components/ChangePassword';
 import ForgotPassword from './components/ForgotPassword';
+import Invite from './components/Invite';
 
 export const ContextApi = createContext();
 
@@ -125,9 +126,9 @@ function App() {
             <Route path='/deposit' element={<Deposit />} />
             <Route path="/recharge_window/:recharge_value" element={<RechargeWindow />} />
             <Route path='/deposit_records' element={<DepositRecords />} />
-            <Route path='/invite' element={<Account />} />
-            <Route path='/article' element={<Account />} />
-            <Route path='/orders' element={<Account />} />
+            <Route path='/invite' element={<Invite />} />
+            {/* <Route path='/article' element={<Account />} /> */}
+            {/* <Route path='/orders' element={<Account />} /> */}
             <Route path='/bankCard' element={<BankCard />} />
             <Route path='/bankCardAdd' element={<BankCardAdd />} />
             <Route path='/widthdrawl' element={<Widthdrawl />} />

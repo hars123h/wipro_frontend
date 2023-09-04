@@ -50,7 +50,7 @@
 }
 
 .bgimg::after {
-    background-image: url(./images//homeBg.png);
+    background-image: url(./images/homeBg.png);
     background-position: 0 0;
     background-size: 100%;
     background-color: #fff;
@@ -68,9 +68,9 @@
     clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%)
 }
 
-.cardBg {
+/* .cardBg {
     background-image: url(./images/GraphDefault.svg);
-}
+} */
 
 .swiper {
     transform: translate3d(0, 0, 0);
@@ -270,4 +270,11 @@ input[type=radio]:checked+label:after {
     background-repeat: no-repeat;
     opacity: 0.3;
     z-index: 1;
+}
+
+.copyBtn {
+    color: #fff;
+    background: rgb(255, 116, 24);
+    background: linear-gradient(180deg, rgba(255, 116, 24, 1) 41%, rgba(255, 156, 28, 1) 100%);
+    box-shadow: 0 -3px 30px 1px rgba(80, 35, 0, 0.1);
 }

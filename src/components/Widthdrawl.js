@@ -11,7 +11,7 @@ const Widthdrawl = () => {
     const navigate = useNavigate();
 
 
-    const { userDetails, setUserDetails, getUserDetails, user, toaster, amounts, setAmounsts } = useContext(ContextApi);
+    const { userDetails,setLoading, setUserDetails, getUserDetails, user, toaster, amounts, setAmounsts } = useContext(ContextApi);
 
     // console.log(amounts);
 
@@ -68,16 +68,19 @@ const Widthdrawl = () => {
             return;
         }
 
-        if (((Number(deposit)) > Number(userDetails.earning))) {
-            toaster('You dont have enough earning');
+        if (((Number(deposit)) > Number(userDetails.balance))) {
+            toaster('You dont have enough balance');
             return;
         }
         //&& otp === otpfield
-        if (true) {
+        if (userDetails.wpwd===wpwd) {
             try {
                 //const docRef1 = 
                 var temp_details = bank_details;
                 delete temp_details._id;
+
+                setLoading(true)
+
                 await axios.post(`${BASE_URL}/place_withdrawal`, {
                     withdrawalAmount: (Number(deposit)),
                     ...temp_details,
@@ -87,20 +90,26 @@ const Widthdrawl = () => {
                     balance: userDetails.balance,
                     status: 'pending'
                 }).then(() => {
+                    setLoading(false)
                     toaster('Withdrawal request placed successfully!');
                     setTimeout(() => {
                         navigate('/widthdrawlrecords')
                     }, 3000);
                 }).catch(e => {
+                    setLoading(false)
+                    toaster("some error occured")
                     console.log(e);
                 })
 
             } catch (e) {
+                setLoading(false)
+                toaster('error adding document')
                 console.error("Error adding document: ", e);
 
             }
         } else {
-            toaster('Withdrawal Password is incorrect');
+            setLoading(false)
+            toaster('Trade Password is incorrect');
             //console.log(wpassword, loc.state.withdrawalPassword);
         }
 

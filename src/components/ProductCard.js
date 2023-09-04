@@ -37,8 +37,11 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                 toaster("Insufficient inventory of products availbale for purchase")
             }
             else {
+
+                setLoading(true)
+
                 await axios.post(`${BASE_URL}/purchase`, {
-                    balance: Number(userDetails.balance) - Number(Number(quantity) * Number(plan_amount)),
+                    recharge_amount: Number(userDetails.recharge_amount) - Number(Number(quantity) * Number(plan_amount)),
                     boughtLong: (product_type === 'vip' ? 1 : 0),
                     boughtShort: (product_type === '' ? 1 : 0),
                     user_id: localStorage.getItem('uid'),
@@ -56,11 +59,13 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                     }
                 }).then(() => {
                     console.log('Product successfully purchased');
+                    setLoading(false)
                     toaster('Plan purchased!');
                     getUserDetails()
                     setpop(!pop)
                 }).catch((error) => {
                     console.log('Some error occured', error);
+                    setLoading(false)
                     toaster('Some error occured, try again after some time');
                 })
 
@@ -68,6 +73,11 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
 
         }
     }
+
+    useEffect(() => {
+        setQuantity(Math.max(quantity, 1))
+    }, [quantity, setQuantity])
+
 
 
     useEffect(() => {
@@ -77,6 +87,9 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
         getUserDetails();
 
     }, [product_type])
+
+    console.log(typeof quantity);
+
 
 
 
@@ -177,7 +190,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                                         </div>
 
                                         <input type="number" name='setQuantity' value={quantity} maxLength={10} size={10} className='flex-1 bg-transparent outline-none shadow-0 border-0 select-text appearance-none px-[5px] py-[10px] leading-[50px] h-[50px] w-full font-bold text-center text-[26px] text-[#4b4d5e]'
-                                            onChange={(e) => { setQuantity(Number(e.target.value)); console.log(typeof quantity) }}
+                                            onChange={(e) => { setQuantity(Number(e.target.value)) }}
                                         />
 
                                         <div className="flex flex-wrap justify-center items-center rounded-full text-white text-[30px] w-10 h-10 bg-[#3468a3] font-bold" onClick={() => setQuantity(quantity + 1)}>

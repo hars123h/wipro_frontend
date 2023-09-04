@@ -20,7 +20,7 @@ const RechargeWindow = () => {
     const [refno, setRefno] = useState('');
     const [amounts, setAmounsts] = useState({});
     // const amountDetails = useContext(amounts);
-    const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
+    const { userDetails, setUserDetails, getUserDetails, user, toaster,setLoading } = useContext(ContextApi);
     const navigate = useNavigate();
 
 
@@ -31,6 +31,8 @@ const RechargeWindow = () => {
             toaster('Enter a valid Ref No. of 12 digits');
             return;
         }
+        
+        setLoading(true)
         try {
             await axios.post(`${BASE_URL}/place_recharge`, {
                 refno,
@@ -45,10 +47,12 @@ const RechargeWindow = () => {
             }).then((response) => {
                 console.log(response.data);
                 if (response.data.message === 'refno already exists') {
+                    setLoading(false)
                     toaster('RefNo already exists');
                     setRefno('');
                     console.log('RefNo already exists');
                 } else {
+                    setLoading(false)
                     toaster('Request Placed Successfully!');
                     setRefno('');
                     console.log('Recharge placed successfully!');
@@ -61,6 +65,7 @@ const RechargeWindow = () => {
             })
             //console.log("Document written with ID: ", docRef1.id, docRef2.id);
         } catch (e) {
+            setLoading(false)
             console.error("Error adding document: ", e);
         }
     }
