@@ -1,10 +1,29 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { LiaAngleLeftSolid } from 'react-icons/lia'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import BASE_URL from '../api_url';
+import { ContextApi } from '../App';
 
 const DepositRecords = () => {
+
+    const navigate = useNavigate();
+
+
+    const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user } = useContext(ContextApi);
+
+
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+    }, [])
 
     const nameMapper = {
         confirmed: 'success',

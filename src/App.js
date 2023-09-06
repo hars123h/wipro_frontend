@@ -25,6 +25,8 @@ import ChangePassword from './components/ChangePassword';
 import ForgotPassword from './components/ForgotPassword';
 import Invite from './components/Invite';
 import Comissions from './components/Comissions';
+import { getuserearn } from './utils/apis';
+import Order from './components/Order';
 
 export const ContextApi = createContext();
 
@@ -36,6 +38,7 @@ function App() {
   const [toasterText, setToasterText] = useState('');
   const [userDetails, setUserDetails] = useState();
   const [amounts, setAmounsts] = useState({});
+  const [earning, setEarning] = useState()
 
   const toaster = useCallback((text) => {
     setToasterText(text);
@@ -62,6 +65,8 @@ function App() {
         // toaster('Please login')
       }
     }).catch(error => console.log('Some error occured', error));
+
+    getuserearn();
   }
 
   const getData = async () => {
@@ -80,8 +85,8 @@ function App() {
   useEffect(() => {
     getData();
     getUserDetails();
+    getuserearn();
   }, [])
-
 
   return (
     <>
@@ -93,7 +98,8 @@ function App() {
           toasterShow, setToasterShow,
           toasterText, setToasterText,
           toaster, getUserDetails,
-          amounts, setAmounsts
+          amounts, setAmounsts,
+          earning, setEarning
         }
       }>
         <BrowserRouter>
@@ -130,7 +136,7 @@ function App() {
             <Route path='/deposit_records' element={<DepositRecords />} />
             <Route path='/invite' element={<Invite />} />
             {/* <Route path='/article' element={<Account />} /> */}
-            {/* <Route path='/orders' element={<Account />} /> */}
+            <Route path='/orders' element={<Order />} />
             <Route path='/bankCard' element={<BankCard />} />
             <Route path='/bankCardAdd' element={<BankCardAdd />} />
             <Route path='/widthdrawl' element={<Widthdrawl />} />

@@ -1,10 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import BASE_URL from '../api_url';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LiaAngleLeftSolid } from 'react-icons/lia';
 import axios from 'axios'
+import { ContextApi } from '../App';
 
 const WidthdrawlRecords = () => {
+
+    const navigate = useNavigate();
+
+
+    const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user } = useContext(ContextApi);
+
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
+    }, [])
 
     const nameMapper = {
         confirmed: 'success',
@@ -24,7 +42,7 @@ const WidthdrawlRecords = () => {
         getWithdrawals_list();
     }, []);
 
-    console.log(withdrawal_list);
+    // console.log(withdrawal_list);
 
     return (
         <>

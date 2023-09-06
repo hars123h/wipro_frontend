@@ -18,7 +18,7 @@ const Comissions = () => {
         getComissions();
     }, []);
 
-    console.log(comissionList);
+    // console.log(comissionList);
 
     return (
         <>

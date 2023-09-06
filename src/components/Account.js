@@ -121,7 +121,7 @@ const Account = () => {
                                     </div>
                                 </Link>
 
-                                <div className="w-1/2 px-[5px] pt-[5px] text-left">
+                                <Link to={'/orders'} className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             {/* <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em> */}
@@ -129,7 +129,7 @@ const Account = () => {
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>My order</span>
                                     </div>
-                                </div>
+                                </Link>
 
                                 <div className="w-1/2 px-[5px] pt-[5px] text-left">
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
@@ -155,7 +155,7 @@ const Account = () => {
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            {(Number(userDetails?.indirectRecharge)+Number(userDetails?.in_indirectRecharge)).toFixed(2)}
+                                            {(Number(userDetails?.indirectRecharge) + Number(userDetails?.in_indirectRecharge) + Number(userDetails?.directRecharge)).toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] '>Total commission</span>
                                     </div>
