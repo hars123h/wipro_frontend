@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import BASE_URL from '../api_url';
-import { Link } from 'react-router-dom';
 import { LiaAngleLeftSolid } from 'react-icons/lia';
+import { Link } from 'react-router-dom';
 import axios from 'axios'
+import BASE_URL from '../api_url';
 
-const WidthdrawlRecords = () => {
 
-    const nameMapper = {
-        confirmed: 'success',
-        declined: 'declined',
-        pending: 'pending'
-    }
+const Comissions = () => {
 
-    const [withdrawal_list, setWithdrawal_list] = useState([]);
-
+    const [comissionList, setComissionList] = useState([])
 
     useEffect(() => {
-        const getWithdrawals_list = async () => {
-            const querySnapshot = await axios.post(`${BASE_URL}/get_user_withdrawals`, { user_id: localStorage.getItem('uid') })
+        const getComissions = async () => {
+            const querySnapshot = await axios.post(`${BASE_URL}/comissions`, { _id: localStorage.getItem('uid') })
                 .then(res => res.data);
-            setWithdrawal_list(querySnapshot);
+            setComissionList(querySnapshot.comissionData);
         }
-        getWithdrawals_list();
+        getComissions();
     }, []);
 
-    console.log(withdrawal_list);
+    console.log(comissionList);
 
     return (
         <>
+
             <div className="bg-[#e0f2f1]  after:contents-[' '] after:fixed h-screen ">
                 <div className="w-full mx-auto max-w-[800px]">
 
@@ -38,7 +33,7 @@ const WidthdrawlRecords = () => {
                                 <LiaAngleLeftSolid size={22} />
                             </Link>
 
-                            <h2 className='left-0 right-0 text-center text-lg font-medium absolute z-[1] flex-1 text-white ' >Widthdrawl Records</h2>
+                            <h2 className='left-0 right-0 text-center text-lg font-medium absolute z-[1] flex-1 text-white ' >Commission Records</h2>
 
                         </div>
                     </header>
@@ -47,19 +42,19 @@ const WidthdrawlRecords = () => {
                         <div className="m-[5px]">
                             <ul>
 
-                                {withdrawal_list?.map((data, index) =>
+                                {comissionList?.map((data, index) =>
 
                                     <li key={index} className='my-[5px] p-[10px] bg-[rgba(255,255,255,0.6)] rounded-[7px] flex flex-wrap items-stretch'>
 
                                         <div className="flex-1">
-                                            <p className='text-[#666]'>{nameMapper[String(data.status)]}</p>
+                                            <p className='text-[#666]'>Buy Commission ({data?.commissionLevel})</p>
                                             <span className='text-sm text-[#999]'>{new Date(data.time).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</span>
                                         </div>
 
                                         <div className="">
                                             <p>
                                                 <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                                {new Intl.NumberFormat().format(data.withdrawalAmount)}
+                                                {new Intl.NumberFormat().format(data.comissionAmount)}
                                             </p>
                                         </div>
 
@@ -79,8 +74,9 @@ const WidthdrawlRecords = () => {
 
                 </div>
             </div>
+
         </>
     )
 }
 
-export default WidthdrawlRecords
+export default Comissions

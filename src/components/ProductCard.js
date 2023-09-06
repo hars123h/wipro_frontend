@@ -42,6 +42,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
 
                 await axios.post(`${BASE_URL}/purchase`, {
                     recharge_amount: Number(userDetails.recharge_amount) - Number(Number(quantity) * Number(plan_amount)),
+                    investAmount: Number(Number(quantity) * Number(plan_amount)),
                     boughtLong: (product_type === 'vip' ? 1 : 0),
                     boughtShort: (product_type === '' ? 1 : 0),
                     user_id: localStorage.getItem('uid'),
@@ -87,9 +88,6 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
         getUserDetails();
 
     }, [product_type])
-
-    console.log(typeof quantity);
-
 
 
 

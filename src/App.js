@@ -24,6 +24,7 @@ import WithdrawlPassword from './components/WithdrawlPassword';
 import ChangePassword from './components/ChangePassword';
 import ForgotPassword from './components/ForgotPassword';
 import Invite from './components/Invite';
+import Comissions from './components/Comissions';
 
 export const ContextApi = createContext();
 
@@ -54,6 +55,7 @@ function App() {
         // setOriginalwpwd(data.wpwd);
         // setOriginalpwd(data.pwd);
         localStorage.setItem('user_invite', data.user_invite);
+        // console.log('run');
         return data
       } else {
         //console.log('Data not found');
@@ -137,6 +139,7 @@ function App() {
             <Route path='/widthdrawlpassword' element={<WithdrawlPassword />} />
             <Route path='/changepassword' element={<ChangePassword />} />
             <Route path='/forgotpassword' element={<ForgotPassword />} />
+            <Route path='/comissions' element={<Comissions />} />
           </Routes>
 
         </BrowserRouter>

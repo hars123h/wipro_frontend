@@ -173,7 +173,7 @@ const Widthdrawl = () => {
                                 <div className="mt-[10px]">
                                     <h3 className='text-[30px] font-bold text-white leading-none' >
                                         <em className='mr-1 p-0 px-[2px] border-0 text-base font-light align-top not-italic leading-none '>₹</em>
-                                        {(Number(userDetails?.earning) - Number(userDetails?.withdrawal_sum)).toFixed(2)}
+                                        {(Number(userDetails?.balance)).toFixed(2)}
                                     </h3>
                                     <span className='text-base text-[#fffc] opacity-80 leading-none'>Withdrawable account balance</span>
                                 </div>

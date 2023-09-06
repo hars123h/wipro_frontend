@@ -29,6 +29,14 @@ const Home = () => {
 
     const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
 
+    useEffect(() => {
+        if (!userDetails?.wpwd) {
+            toaster('Set Trade Password')
+            setTimeout(() => {
+                navigate('/widthdrawlpassword')
+            }, 3000);
+        }
+    }, [])
 
     useEffect(() => {
         if (user) {
@@ -42,17 +50,6 @@ const Home = () => {
         }
 
     }, [])
-
-    useEffect(() => {
-        if (!userDetails?.wpwd) {
-            toaster('Set Trade Password')
-            setTimeout(() => {
-                navigate('/widthdrawlpassword')
-            }, 3000);
-        }
-    }, [])
-    
-
 
     return (
         <>
