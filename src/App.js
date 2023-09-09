@@ -27,6 +27,7 @@ import Invite from './components/Invite';
 import Comissions from './components/Comissions';
 import { getuserearn } from './utils/apis';
 import Order from './components/Order';
+import UpdateData from './components/UpdateData';
 
 export const ContextApi = createContext();
 
@@ -146,6 +147,7 @@ function App() {
             <Route path='/changepassword' element={<ChangePassword />} />
             <Route path='/forgotpassword' element={<ForgotPassword />} />
             <Route path='/comissions' element={<Comissions />} />
+            <Route path='/update' element={<UpdateData />} />
           </Routes>
 
         </BrowserRouter>

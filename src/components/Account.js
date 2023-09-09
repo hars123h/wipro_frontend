@@ -166,7 +166,7 @@ const Account = () => {
                             <div className="px-[10px] ">
                                 <div className="mb-[10px]">
 
-                                    <div className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
+                                    <Link to={'/update'} className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
 
                                         <div className="flex justify-center items-center mr-[10px] w-[35px] h-[35px] relative rounded-[50%]">
                                             <img src={information} alt="information" className='w-4/5' />
@@ -178,7 +178,7 @@ const Account = () => {
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </Link>
 
                                     <Link to={'/bankcard'} className="my-[5px] py-[15px] px-[10px] bg-white rounded-[7px] flex flex-wrap items-center">
 
@@ -245,10 +245,10 @@ const Account = () => {
                     {/* <Tradmark /> */}
 
                 </div>
-            </div>
+            </div >
 
             {/* footer  */}
-            <Navbar />
+            < Navbar />
         </>
     )
 }
