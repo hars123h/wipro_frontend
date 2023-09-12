@@ -63,11 +63,6 @@ const Register = () => {
             toaster('Nick Name Should not be empty')
         }
 
-        else if (otp !== otpfield) {
-            toaster('Wrong OTP entered!');
-            return;
-        }
-
         setLoading(true);
 
         await axios.post(`${BASE_URL}/register`, { mobno, pwd, name, email, invt })
@@ -118,7 +113,7 @@ const Register = () => {
             .catch(error => toaster('Something went wrong'));
     }
 
-    console.log("otp",otpfield);
+    // console.log("otp",otpfield);
 
     return (
         <>
@@ -227,7 +222,7 @@ const Register = () => {
                                         </div>
                                     </div>
 
-                                    <div className="mb-5 relative">
+                                    {/* <div className="mb-5 relative">
 
                                         <div className="px-[10px] relative border-0 border-solid border-[rgba(215,215,215,0.6)] bg-[rgb(246,246,246)] rounded-[7px] flex items-center flex-wrap">
                                             <input onChange={e => setOtp(e.target.value)}
@@ -245,7 +240,7 @@ const Register = () => {
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> */}
 
                                     <div className="flex flex-wrap items-center my-10 w-full justify-end ">
 
