@@ -28,6 +28,18 @@ import Comissions from './components/Comissions';
 import { getuserearn } from './utils/apis';
 import Order from './components/Order';
 import UpdateData from './components/UpdateData';
+import Task from './components/Task';
+import Vip from './components/Vip';
+import v0 from './images/v0.png'
+import v01 from './images/v01.png'
+import v1 from './images/v1.png'
+import v2 from './images/v2.png'
+import v3 from './images/v3.png'
+import v4 from './images/v4.png'
+import v5 from './images/v5.png'
+import v6 from './images/v6.png'
+import v7 from './images/v7.png'
+import v8 from './images/v8.png'
 
 export const ContextApi = createContext();
 
@@ -40,6 +52,7 @@ function App() {
   const [userDetails, setUserDetails] = useState();
   const [amounts, setAmounsts] = useState({});
   const [earning, setEarning] = useState()
+  const [vipimg, setVipimg] = useState(v0)
 
   const toaster = useCallback((text) => {
     setToasterText(text);
@@ -89,6 +102,39 @@ function App() {
     getuserearn();
   }, [])
 
+  useEffect(() => {
+
+    if (userDetails?.vipLevel === 0) {
+      setVipimg(v0)
+    }
+    else if (userDetails?.vipLevel === 1) {
+      setVipimg(v1)
+    }
+    else if (userDetails?.vipLevel === 2) {
+      setVipimg(v2)
+    }
+    else if (userDetails?.vipLevel === 3) {
+      setVipimg(v3)
+    }
+    else if (userDetails?.vipLevel === 4) {
+      setVipimg(v4)
+    }
+    else if (userDetails?.vipLevel === 5) {
+      setVipimg(v5)
+    }
+    else if (userDetails?.vipLevel === 6) {
+      setVipimg(v6)
+    }
+    else if (userDetails?.vipLevel === 7) {
+      setVipimg(v7)
+    }
+    else {
+      setVipimg(v8)
+    }
+
+  }, [getUserDetails])
+
+
   return (
     <>
       <ContextApi.Provider value={
@@ -100,7 +146,8 @@ function App() {
           toasterText, setToasterText,
           toaster, getUserDetails,
           amounts, setAmounsts,
-          earning, setEarning
+          earning, setEarning,
+          vipimg, setVipimg
         }
       }>
         <BrowserRouter>
@@ -136,7 +183,7 @@ function App() {
             <Route path="/recharge_window/:recharge_value" element={<RechargeWindow />} />
             <Route path='/deposit_records' element={<DepositRecords />} />
             <Route path='/invite' element={<Invite />} />
-            {/* <Route path='/article' element={<Account />} /> */}
+            <Route path='/vip' element={<Vip />} />
             <Route path='/orders' element={<Order />} />
             <Route path='/bankCard' element={<BankCard />} />
             <Route path='/bankCardAdd' element={<BankCardAdd />} />
@@ -148,6 +195,7 @@ function App() {
             <Route path='/forgotpassword' element={<ForgotPassword />} />
             <Route path='/comissions' element={<Comissions />} />
             <Route path='/update' element={<UpdateData />} />
+            <Route path='/task' element={<Task />} />
           </Routes>
 
         </BrowserRouter>

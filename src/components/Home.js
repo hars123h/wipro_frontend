@@ -27,7 +27,7 @@ const Home = () => {
     const navigate = useNavigate();
 
 
-    const { userDetails, setUserDetails, getUserDetails, user, toaster } = useContext(ContextApi);
+    const { userDetails, setUserDetails, getUserDetails, user, toaster, vipimg } = useContext(ContextApi);
 
     useEffect(() => {
         if (!userDetails?.wpwd) {
@@ -78,7 +78,8 @@ const Home = () => {
                             <div className="pt-5 px-5 pb-[10px] bg-white shadow-[0px_-20px_30px_20px_rgba(0,40,14,0.1)] rounded-[7px_7px_0_0] ">
 
                                 <Link to={`/vip`} className='flex items-end top-[10px] right-5 absolute'>
-                                    <RiVipLine size={40} className='text-[#b3bdc4]' />
+                                    {/* <RiVipLine size={40} className='text-[#b3bdc4]' /> */}
+                                    <img src={vipimg} alt="" className='w-6' />
                                 </Link>
 
                                 <ul className='flex flex-wrap items-end'>

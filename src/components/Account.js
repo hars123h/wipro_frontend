@@ -16,7 +16,7 @@ const Account = () => {
 
     const navigate = useNavigate();
 
-    const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user } = useContext(ContextApi);
+    const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user, vipimg } = useContext(ContextApi);
 
 
     const [name, setname] = useState('HI')
@@ -62,7 +62,8 @@ const Account = () => {
                                     </div>
 
                                     <Link to={`/vip`} className='flex items-end '>
-                                        <RiVipLine size={40} className='text-[#b3bdc4]' />
+                                        {/* <RiVipLine size={40} className='text-[#b3bdc4]' /> */}
+                                        <img src={vipimg} alt="" className='w-6' />
                                     </Link>
 
                                 </div>
