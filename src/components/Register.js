@@ -16,7 +16,7 @@ const Register = () => {
     const {
         setLoading,
         toaster,
-        
+
     } = useContext(ContextApi);
 
     const [search, setSearch] = useSearchParams();
@@ -241,6 +241,25 @@ const Register = () => {
 
                                         </div>
                                     </div> */}
+
+                                    <div className="mb-5 relative">
+
+                                        <div className="px-[10px] relative border-0 border-solid border-[rgba(215, 215, 215, 0.6)] bg-[rgb(246,246,246)] rounded-[7px] flex items-center flex-wrap">
+                                            <input onChange={e => setInvt(e.target.value)}
+                                                type='text'
+                                                name="invite"
+                                                id="invite"
+                                                className=' fillArea w-full h-[50px] text-base px-[5px] py-[10px] appearance-none select-text outline-none border-0 border-[#e0e0e0] border-solid text-[#1e2531] font-medium bg-transparent flex-1'
+                                                placeholder=''
+                                                maxLength={20}
+                                                size={20}
+                                                value={invt}
+
+                                            />
+                                            <div className="cut bg-transparent rounded-[10px] h-5 left-[10px] absolute -top-5 translate-y-0 w-[100px] transition-transform delay-0 eas duration-200"></div>
+                                            <label className='placeholder text-[#818393] text-sm left-[10px] pointer-events-none absolute origin-[0_50%] transition-all duration-200  '>Invitation Code</label>
+                                        </div>
+                                    </div>
 
                                     <div className="flex flex-wrap items-center my-10 w-full justify-end ">
 
