@@ -72,6 +72,7 @@ function App() {
         // setOriginalwpwd(data.wpwd);
         // setOriginalpwd(data.pwd);
         localStorage.setItem('user_invite', data.user_invite);
+        localStorage.setItem('wpwd', data.wpwd);
         // console.log('run');
         return data
       } else {

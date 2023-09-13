@@ -29,8 +29,13 @@ const Home = () => {
 
     const { userDetails, setUserDetails, getUserDetails, user, toaster, vipimg } = useContext(ContextApi);
 
+
+    const [wpwd, setWpwd] = useState(localStorage.getItem('wpwd'))
+
+    // console.log(userDetails);
+
     useEffect(() => {
-        if (!userDetails?.wpwd) {
+        if (!wpwd) {
             toaster('Set Trade Password')
             setTimeout(() => {
                 navigate('/widthdrawlpassword')

@@ -11,7 +11,7 @@ const Widthdrawl = () => {
     const navigate = useNavigate();
 
 
-    const { userDetails,setLoading, setUserDetails, getUserDetails, user, toaster, amounts, setAmounsts } = useContext(ContextApi);
+    const { userDetails, setLoading, setUserDetails, getUserDetails, user, toaster, amounts, setAmounsts } = useContext(ContextApi);
 
     // console.log(amounts);
 
@@ -26,6 +26,7 @@ const Widthdrawl = () => {
 
     const [deposit, setDeposit] = useState()
     const [wpwd, setWpwd] = useState()
+    const [wpwd2, setWpwd2] = useState(localStorage.getItem('wpwd'))
 
     const isBetween = () => {
         var startTime = '8:00:00';
@@ -73,7 +74,7 @@ const Widthdrawl = () => {
             return;
         }
         //&& otp === otpfield
-        if (userDetails.wpwd===wpwd) {
+        if (userDetails.wpwd === wpwd) {
             try {
                 //const docRef1 = 
                 var temp_details = bank_details;
@@ -129,7 +130,7 @@ const Widthdrawl = () => {
 
     useEffect(() => {
 
-        if (!userDetails?.wpwd) {
+        if (!wpwd2) {
             toaster('Set Trade Password')
             setTimeout(() => {
                 navigate('/widthdrawlpassword')
