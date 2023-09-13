@@ -40,6 +40,7 @@ import v5 from './images/v5.png'
 import v6 from './images/v6.png'
 import v7 from './images/v7.png'
 import v8 from './images/v8.png'
+import Message from './components/Message';
 
 export const ContextApi = createContext();
 
@@ -197,6 +198,7 @@ function App() {
             <Route path='/comissions' element={<Comissions />} />
             <Route path='/update' element={<UpdateData />} />
             <Route path='/task' element={<Task />} />
+            <Route path='/message' element={<Message />} />
           </Routes>
 
         </BrowserRouter>

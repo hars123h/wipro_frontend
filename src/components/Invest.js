@@ -78,7 +78,7 @@ const Invest = () => {
                                 <div className="flex-[2]">
                                     <p className='text-[26px] font-bold text-white leading-none' >
                                         {/* {amount}  */}
-                                        {` 0`}
+                                        {userDetails?.earning}
                                     </p>
                                     <span className=' text-white opacity-80 leading-none'>Bought-in</span>
                                 </div>
