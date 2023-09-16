@@ -129,8 +129,9 @@ const Widthdrawl = () => {
     }, [])
 
     useEffect(() => {
+        // console.log(wpwd2);
 
-        if (!wpwd2) {
+        if (wpwd2 === 'undefined') {
             toaster('Set Trade Password')
             setTimeout(() => {
                 navigate('/widthdrawlpassword')

@@ -45,7 +45,7 @@ const WpasswordChange = () => {
             .catch(error => toaster('Something went wrong'));
     }
 
-    console.log("otp", otpfield,userDetails.mobno);
+    // console.log("otp", otpfield,userDetails.mobno);
 
     const handleRegister = async () => {
 

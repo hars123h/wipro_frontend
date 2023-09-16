@@ -34,38 +34,28 @@ const Home = () => {
 
     // console.log(userDetails);
 
-
-
     useEffect(() => {
-
-        const apicall = async () => {
-
-            if (user) {
-                const data = await getUserDetails();
-                console.log(data);
-                // if (!data?.wpwd) {
-                //     toaster('Set Trade Password')
-                //     setTimeout(() => {
-                //         navigate('/widthdrawlpassword')
-                //     }, 3000);
-                // }
-            }
-            else {
-                toaster('Please login')
-                setTimeout(() => {
-                    navigate('/')
-                }, 3000);
-            }
+        // console.log(wpwd);
+        if (wpwd === 'undefined') {
+            toaster('Set Trade Password')
+            setTimeout(() => {
+                navigate('/widthdrawlpassword')
+            }, 3000);
         }
-        apicall();
-
-
-
     }, [])
 
-    // useEffect(() => {
+    useEffect(() => {
+        if (user) {
+            getUserDetails()
+        }
+        else {
+            toaster('Please login')
+            setTimeout(() => {
+                navigate('/')
+            }, 3000);
+        }
 
-    // }, [])
+    }, [])
 
     return (
         <>

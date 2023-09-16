@@ -74,9 +74,7 @@ function App() {
         // setOriginalpwd(data.pwd);
         localStorage.setItem('user_invite', data.user_invite);
         localStorage.setItem('wpwd', data.wpwd);
-        console.log(data.wpwd, 'run');
 
-        // console.log('run');
         return data
       } else {
         //console.log('Data not found');
@@ -102,7 +100,7 @@ function App() {
 
   useEffect(() => {
     getData();
-    getUserDetails();
+    // getUserDetails();
     getuserearn();
   }, [])
 
