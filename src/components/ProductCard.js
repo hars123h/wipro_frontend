@@ -275,8 +275,8 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
             <div className="w-full p-[5px]">
                 <div className="shadow-[0_-3px_30px_1px_rgba(80,35,0,0.1)] p-[10px] bg-white backdrop-blur-sm relative rounded-[7px] ">
 
-                    <div className="mb-[10px] max-h-[120px] overflow-hidden bg-center bg-no-repeat bg-[length:90%_90%] cardBg bg-[#f8f8f8] rounded-[3px]">
-                        <img src={product_image} alt="" className={`w-full ${product_type === 0 ? 'relative -top-36' : ''} `} />
+                    <div className="mb-[10px] overflow-hidden bg-center bg-no-repeat bg-[length:90%_90%] cardBg bg-[#f8f8f8] rounded-[3px]">
+                        <img src={product_image} alt="" className={`w-full `} />
                     </div>
 
                     <div className="mb-[10px]">

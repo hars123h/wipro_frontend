@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from './Card'
-import img201 from '../images/productImage.jpg'
-import img301 from '../images/productImage.jpg'
+import img201 from '../images/201.png'
+import img301 from '../images/301.png'
 import { Link } from 'react-router-dom'
 import { LiaAngleLeftSolid } from 'react-icons/lia'
 

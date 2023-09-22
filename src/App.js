@@ -41,6 +41,7 @@ import v6 from './images/v6.png'
 import v7 from './images/v7.png'
 import v8 from './images/v8.png'
 import Message from './components/Message';
+import Article from './components/Article';
 
 export const ContextApi = createContext();
 

@@ -10,7 +10,7 @@ const Card = ({ link, img, title, content, timestamp }) => {
             <Link to={link} className='px-[5px] pb-[10px] block'>
 
                 <div className="p-[10px]  bg-white rounded-[7px]">
-                    <div className="w-full min-h-[60px] max-h-[130px] overflow-hidden bg-center bg-no-repeat bg-[length:90%_90%] cardBg bg-[#f8f8f8]">
+                    <div className="w-full min-h-[60px] overflow-hidden bg-center bg-no-repeat bg-[length:90%_90%] cardBg bg-[#f8f8f8]">
                         {img && <img src={img} alt="img" className={`w-full `} />}
                     </div>
                     <div className="leading-none">
