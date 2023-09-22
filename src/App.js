@@ -199,6 +199,7 @@ function App() {
             <Route path='/update' element={<UpdateData />} />
             <Route path='/task' element={<Task />} />
             <Route path='/message' element={<Message />} />
+            <Route path='/article' element={<Article />} />
           </Routes>
 
         </BrowserRouter>
