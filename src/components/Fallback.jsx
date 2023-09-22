@@ -8,8 +8,6 @@ const Fallback = () => {
 
   const navigate = useNavigate();
 
-  console.log('hello');
-
   useEffect(() => {
     navigate('/login');
 
