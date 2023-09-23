@@ -102,7 +102,7 @@ function App() {
   useEffect(() => {
     getData();
     // getUserDetails();
-    getuserearn();
+    // getuserearn();
   }, [])
 
   useEffect(() => {
