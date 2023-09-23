@@ -8,7 +8,7 @@ import BASE_URL from '../api_url'
 
 const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_image, plan_name, plan_type, plan_amount, plan_daily_earning, plan_cycle, handleClick }) => {
 
-    Date.prototype.addDays = function(days) {
+    Date.prototype.addDays = function (days) {
         this.setDate(this.getDate() + parseInt(days));
         return this;
     };
@@ -245,7 +245,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                                         <p className=' text-[#4b4d5e] text-base'>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
 
-                                            {userDetails?.balance?.toFixed(2)}
+                                            {userDetails?.recharge_amount?.toFixed(2)}
                                         </p>
                                     </div>
 
