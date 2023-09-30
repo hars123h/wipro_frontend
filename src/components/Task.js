@@ -14,7 +14,8 @@ const Task = () => {
 
     const handelSignin = async () => {
         await axios.post(`${BASE_URL}/signinReward`, { _id: localStorage.getItem('uid') }).then(responce => {
-            toaster("Reward recived")
+            // console.log(responce.data);
+            toaster(responce.data.message)
         }).catch(error => {
             toaster("Something went wrong")
         })

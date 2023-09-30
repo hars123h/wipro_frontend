@@ -19,10 +19,11 @@ const Account = () => {
     const { userDetails, setUserDetails, setUser, getUserDetails, toaster, user, vipimg } = useContext(ContextApi);
 
 
-    const [name, setname] = useState('HI')
-    const [mobno, setMobno] = useState(9555890771)
-    const [id, setid] = useState(228028)
-    const [Balance, setBalance] = useState(25.00)
+    const [name, setname] = useState('')
+    const [mobno, setMobno] = useState(0)
+    const [id, setid] = useState(0)
+    const [Balance, setBalance] = useState(0)
+    const [rewards, setRewards] = useState(50)
 
     const handelSignOut = () => {
         localStorage.clear();
@@ -41,6 +42,14 @@ const Account = () => {
             }, 3000);
         }
     }, [])
+
+    useEffect(() => {
+
+        userDetails?.rewardData?.map((ele) => {
+            setRewards(rewards + ele?.reward)
+        })
+
+    },[])
 
 
     return (
@@ -146,7 +155,7 @@ const Account = () => {
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            25.00
+                                            {rewards.toFixed(2)}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total rewards</span>
                                     </div>
