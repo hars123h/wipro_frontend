@@ -54,7 +54,7 @@ function App() {
   const [userDetails, setUserDetails] = useState();
   const [amounts, setAmounsts] = useState({});
   const [earning, setEarning] = useState()
-  const [vipimg, setVipimg] = useState(v0)
+  const [vipimg, setVipimg] = useState()
 
   const toaster = useCallback((text) => {
     setToasterText(text);
@@ -131,7 +131,7 @@ function App() {
     else if (userDetails?.vipLevel === 7) {
       setVipimg(v7)
     }
-    else {
+    else if (userDetails?.vipLevel === 7) {
       setVipimg(v8)
     }
 
