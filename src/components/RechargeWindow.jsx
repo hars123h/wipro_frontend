@@ -14,6 +14,7 @@ import img4 from '../images/asml/assets/asset 4.png';
 import img5 from '../images/asml/assets/asset 5.png';
 import img6 from '../images/asml/assets/asset 6.png';
 import qr from '../images/qr.jpg';
+import paymentlogo from '../images/paymentlogo.jpg';
 
 const RechargeWindow = () => {
 
@@ -21,7 +22,7 @@ const RechargeWindow = () => {
     const [refno, setRefno] = useState('');
     const [amounts, setAmounsts] = useState({});
     // const amountDetails = useContext(amounts);
-    const { userDetails, setUserDetails, getUserDetails, user, toaster,setLoading } = useContext(ContextApi);
+    const { userDetails, setUserDetails, getUserDetails, user, toaster, setLoading } = useContext(ContextApi);
     const navigate = useNavigate();
 
 
@@ -32,7 +33,7 @@ const RechargeWindow = () => {
             toaster('Enter a valid Ref No. of 12 digits');
             return;
         }
-        
+
         setLoading(true)
         try {
             await axios.post(`${BASE_URL}/place_recharge`, {
@@ -113,10 +114,10 @@ const RechargeWindow = () => {
 
             <div className="options items-start justify-center text-white flex flex-col pt-4 pb-4 mx-3 pl-2 bg-white border-gray-200 border-[1px] rounded-lg mt-4  ">
                 <div className='font-semibold text-gray-500 py-2 text-center w-full'>Scan this QR to pay</div>
-                <div className=' text-gray-400 font-semibold py-2 text-center w-full px-4'>
-                    or take a screenshot and save then open payment app to scan
-                </div>
                 <img src={qr} alt="" className='mx-auto' />
+                <div className=' text-gray-400 font-semibold py-2 text-center w-full px-4'>
+                    <img src={paymentlogo} alt="" />
+                </div>
                 <div className='font-semibold text-red-500 py-2 text-center w-full'>or directly transfer to under UPI</div>
                 <div className="flex gap-2 items-center w-full justify-center px-4">
                     <div className='border-gray-400 border-[1px] rounded-lg bg-gray-100 py-3 px-2 w-3/4 text-gray-600'>
