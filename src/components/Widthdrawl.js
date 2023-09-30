@@ -29,7 +29,7 @@ const Widthdrawl = () => {
     const [wpwd2, setWpwd2] = useState(localStorage.getItem('wpwd'))
 
     const isBetween = () => {
-        var startTime = '8:00:00';
+        var startTime = '10:00:00';
         var endTime = '18:00:00';
 
         var currentDate = new Date()
@@ -276,7 +276,7 @@ const Widthdrawl = () => {
                         <div className="mx-[10px] p-5">
                             <div className="my-5">
                                 <p className='leading-tight py-[2px] text-[#4b4d5e] mb-[10px]'>1. The daily withdrawal time is from 10:00:00 to 18:00:00</p>
-                                <p className='leading-tight py-[2px] text-[#4b4d5e] mb-[10px]'>2. The single withdrawal amount is between 400 and 50000</p>
+                                <p className='leading-tight py-[2px] text-[#4b4d5e] mb-[10px]'>2. The single withdrawal amount is between 300 and 50000</p>
                                 <p className='leading-tight py-[2px] text-[#4b4d5e] mb-[10px]'>3. 5% of the withdrawal amount will be charged as tax for each withdrawal</p>
                                 <p className='leading-tight py-[2px] text-[#4b4d5e] mb-[10px]'>4. In order to facilitate financial settlement, you can only apply for cash withdrawal 1 times a day</p>
                             </div>
