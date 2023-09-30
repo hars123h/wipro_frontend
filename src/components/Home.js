@@ -19,6 +19,7 @@ import Card from './Card'
 import { HiOutlineChevronDoubleRight } from 'react-icons/hi'
 import Tradmark from './Tradmark'
 import { ContextApi } from '../App'
+import { RxCross1 } from 'react-icons/rx'
 
 
 
@@ -31,6 +32,7 @@ const Home = () => {
 
 
     const [wpwd, setWpwd] = useState(localStorage.getItem('wpwd'))
+    const [telegramopen, setTelegram] = useState(false)
 
     // console.log(userDetails);
 
@@ -174,7 +176,7 @@ const Home = () => {
                                         </div>
                                     </div>
 
-                                    <div className='max-w-[120px] w-1/4 p-[10px] text-center'>
+                                    <div onClick={() => setTelegram(true)} className='max-w-[120px] w-1/4 p-[10px] text-center'>
                                         <div className="">
                                             <div className="mb-1 flex flex-wrap items-center justify-center relative">
                                                 <img src={telegram} alt="" className='w-3/5 max-w-[45px] min-w-[35px]' />
@@ -184,6 +186,32 @@ const Home = () => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    {telegramopen &&
+                                        <div className={`top-0 right-0 bottom-0 left-0 p-5 fixed z-[999] justify-center items-center flex`}>
+
+                                            <div className="max-w-[600px] w-full -top-[20%] relative mx-auto p-5 bg-white backdrop-blur-sm shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[15px]">
+                                                <div onClick={() => telegram(true)} className="w-[45px] h-[45px] top-0 right-0 font-bold absolute bg-[rgba(255,87,40,0.9)] z-50 rounded-bl-[30px] flex justify-center items-center ">
+                                                    <RxCross1 size={16} className='font-bold text-white' />
+                                                </div>
+                                                <div className="">
+                                                    <div className="w-full my-[10px]">
+                                                        <h3 className='text-2xl font-bold'>Official telegram channel</h3>
+                                                        <p className='text-sm text-[#818393] leading-5'>Join the official telegram channel <br />to get the latest daily rewards</p>
+                                                    </div>
+                                                </div>
+
+                                                <Link to={'https://telegram.me/kraftofficial1'} className="flex justify-center items-end">
+                                                    <div>
+                                                        <img src={telegram} alt="telegram" className='w-12 m-1' />
+                                                        <p className='text-[#818393] text-base'>Telegram</p>
+                                                    </div>
+
+                                                </Link>
+
+                                            </div>
+                                        </div>
+                                    }
 
                                     <Link to={`/task`} className='max-w-[120px] w-1/4 p-[10px] text-center'>
                                         <div className="">
