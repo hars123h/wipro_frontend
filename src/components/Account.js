@@ -43,13 +43,7 @@ const Account = () => {
         }
     }, [])
 
-    useEffect(() => {
 
-        userDetails?.rewardData?.map((ele) => {
-            setRewards(rewards + ele?.reward)
-        })
-
-    },[])
 
 
     return (
@@ -155,7 +149,7 @@ const Account = () => {
                                     <div className="h-full px-5 py-[10px] bg-white backdrop-blur-[5px] rounded-[7px] ">
                                         <p className='text-base font-bold text-[#1f3d70] leading-none '>
                                             <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                            {rewards.toFixed(2)}
+                                            {userDetails?.rewards?.toFixed(2) || 50.00}
                                         </p>
                                         <span className='text-sm text-[#818393] leading-none'>Total rewards</span>
                                     </div>
