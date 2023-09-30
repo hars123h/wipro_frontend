@@ -191,7 +191,7 @@ const Home = () => {
                                         <div className={`top-0 right-0 bottom-0 left-0 p-5 fixed z-[999] justify-center items-center flex`}>
 
                                             <div className="max-w-[600px] w-full -top-[20%] relative mx-auto p-5 bg-white backdrop-blur-sm shadow-[0_0_10px_1px_rgba(0,0,0,0.1)] z-[2] rounded-[15px]">
-                                                <div onClick={() => telegram(true)} className="w-[45px] h-[45px] top-0 right-0 font-bold absolute bg-[rgba(255,87,40,0.9)] z-50 rounded-bl-[30px] flex justify-center items-center ">
+                                                <div onClick={() => setTelegram(false)} className="w-[45px] h-[45px] top-0 right-0 font-bold absolute bg-[rgba(255,87,40,0.9)] z-50 rounded-bl-[30px] flex justify-center items-center ">
                                                     <RxCross1 size={16} className='font-bold text-white' />
                                                 </div>
                                                 <div className="">
