@@ -13,6 +13,7 @@ import img3 from '../images/asml/assets/asset 3.png';
 import img4 from '../images/asml/assets/asset 4.png';
 import img5 from '../images/asml/assets/asset 5.png';
 import img6 from '../images/asml/assets/asset 6.png';
+import qr from '../images/qr.jpg';
 
 const RechargeWindow = () => {
 
@@ -115,6 +116,7 @@ const RechargeWindow = () => {
                 <div className=' text-gray-400 font-semibold py-2 text-center w-full px-4'>
                     or take a screenshot and save then open payment app to scan
                 </div>
+                <img src={qr} alt="" className='mx-auto' />
                 <div className='font-semibold text-red-500 py-2 text-center w-full'>or directly transfer to under UPI</div>
                 <div className="flex gap-2 items-center w-full justify-center px-4">
                     <div className='border-gray-400 border-[1px] rounded-lg bg-gray-100 py-3 px-2 w-3/4 text-gray-600'>

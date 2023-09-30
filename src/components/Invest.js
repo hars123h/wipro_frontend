@@ -269,7 +269,7 @@ const Invest = () => {
 
                                 {activelist === 'activity' &&
                                     <div className="block bg-white -top-[10px] pt-[10px] px-[5px] h-screen pb-12 relative z-[2] rounded-[7px] ">
-                                        <div className="flex flex-wrap items-center justify-between">
+                                        <div className="flex flex-wrap items-center justify-between h-3/5">
 
                                             {/* <ProductCard
                                                 product_type={1}
@@ -345,7 +345,7 @@ const Invest = () => {
                                                 active={false}
                                             /> */}
 
-                                            <div className="h-[50px] relative overflow-hidden text-xs translate-z-0 mx-auto ">
+                                            <div className="h-[50px] relative overflow-hidden text-xs translate-z-0 mx-auto my-auto ">
                                                 <div className="h-[50px] leading-[50px] text-center text-[#cfd0d9]">No more data</div>
                                             </div>
 
