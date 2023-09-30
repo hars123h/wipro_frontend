@@ -150,66 +150,66 @@ const Invest = () => {
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={575}
-                                                plan_daily_earning={224.25}
+                                                plan_cycle={60}
+                                                plan_amount={495}
+                                                plan_daily_earning={190}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={2000}
-                                                plan_daily_earning={800}
+                                                plan_cycle={60}
+                                                plan_amount={193}
+                                                plan_daily_earning={750}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={5000}
-                                                plan_daily_earning={2000}
+                                                plan_cycle={60}
+                                                plan_amount={3780}
+                                                plan_daily_earning={1480}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={10000}
-                                                plan_daily_earning={4100}
+                                                plan_cycle={60}
+                                                plan_amount={7700}
+                                                plan_daily_earning={3190}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={30000}
-                                                plan_daily_earning={12600}
+                                                plan_cycle={60}
+                                                plan_amount={20000}
+                                                plan_daily_earning={8490}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
+                                                plan_cycle={60}
                                                 plan_amount={50000}
-                                                plan_daily_earning={795500}
+                                                plan_daily_earning={21800}
                                             />
 
                                             <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
+                                                plan_cycle={60}
                                                 plan_amount={100000}
-                                                plan_daily_earning={44000}
+                                                plan_daily_earning={45500}
                                             />
 
-                                            <ProductCard
+                                            {/* <ProductCard
                                                 product_image={img202}
                                                 product_type={0}
-                                                plan_cycle={37}
-                                                plan_amount={200000}
+                                                plan_cycle={60}
+                                                plan_amount={100000}
                                                 plan_daily_earning={90000}
-                                            />
+                                            /> */}
 
                                         </div>
                                     </div>
@@ -223,32 +223,32 @@ const Invest = () => {
                                             <ProductCard
                                                 product_type={1}
                                                 plan_cycle={1}
-                                                plan_amount={300}
-                                                plan_daily_earning={402}
+                                                plan_amount={210}
+                                                plan_daily_earning={300}
                                             />
 
                                             <ProductCard
                                                 product_type={2}
-                                                plan_cycle={3}
-                                                plan_amount={2000}
-                                                plan_daily_earning={880}
+                                                plan_cycle={1}
+                                                plan_amount={1700}
+                                                plan_daily_earning={3000}
                                             />
 
                                             <ProductCard
                                                 product_type={3}
                                                 plan_cycle={3}
-                                                plan_amount={5000}
-                                                plan_daily_earning={2500}
+                                                plan_amount={3700}
+                                                plan_daily_earning={2266}
                                             />
 
                                             <ProductCard
                                                 product_type={4}
                                                 plan_cycle={3}
-                                                plan_amount={10000}
-                                                plan_daily_earning={6000}
+                                                plan_amount={7700}
+                                                plan_daily_earning={4600}
                                             />
 
-                                            <ProductCard
+                                            {/* <ProductCard
                                                 product_type={5}
                                                 plan_cycle={3}
                                                 plan_amount={30000}
@@ -260,7 +260,7 @@ const Invest = () => {
                                                 plan_cycle={3}
                                                 plan_amount={50000}
                                                 plan_daily_earning={37500}
-                                            />
+                                            /> */}
 
                                         </div>
                                     </div>
@@ -268,10 +268,10 @@ const Invest = () => {
                                 }
 
                                 {activelist === 'activity' &&
-                                    <div className="block bg-white -top-[10px] pt-[10px] px-[5px] pb-12 relative z-[2] rounded-[7px] ">
+                                    <div className="block bg-white -top-[10px] pt-[10px] px-[5px] h-screen pb-12 relative z-[2] rounded-[7px] ">
                                         <div className="flex flex-wrap items-center justify-between">
 
-                                            <ProductCard
+                                            {/* <ProductCard
                                                 product_type={1}
                                                 product_image={img302}
                                                 plan_cycle={20}
@@ -343,7 +343,11 @@ const Invest = () => {
                                                 plan_amount={2700}
                                                 plan_daily_earning={3483}
                                                 active={false}
-                                            />
+                                            /> */}
+
+                                            <div className="h-[50px] relative overflow-hidden text-xs translate-z-0 mx-auto ">
+                                                <div className="h-[50px] leading-[50px] text-center text-[#cfd0d9]">No more data</div>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -355,8 +359,9 @@ const Invest = () => {
                         </div>
 
                     </div>
-
-                    <Tradmark />
+                    <div className="fixed bottom-0">
+                        <Tradmark />
+                    </div>
 
                 </div>
             </div>
