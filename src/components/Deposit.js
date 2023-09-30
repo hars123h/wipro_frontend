@@ -41,7 +41,7 @@ const Deposit = () => {
             }
             navigate(`/recharge_window/${Deposit}`);
         } else {
-            alert('Enter a valid recharge amount');
+            toaster('Enter a valid recharge amount');
         }
     }
 
