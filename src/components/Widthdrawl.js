@@ -28,6 +28,12 @@ const Widthdrawl = () => {
     const [wpwd, setWpwd] = useState()
     const [wpwd2, setWpwd2] = useState(localStorage.getItem('wpwd'))
 
+    const date = new Date()
+    date.setHours(0, 0, 0, 0)
+
+    const withdrawDate = new Date(userDetails?.lastWithdrawal)
+    withdrawDate.setHours(0, 0, 0, 0)
+
     const isBetween = () => {
         var startTime = '10:00:00';
         var endTime = '18:00:00';
@@ -62,6 +68,11 @@ const Widthdrawl = () => {
             toaster(`Amount should be greater than ${amounts.mwamount}`);
             //console.log(deposit, amounts.amount);
             return;
+        }
+
+        if (withdrawDate.toDateString() === date.toDateString()) {
+            toaster('you can withdraw once in a day.')
+            return
         }
 
         if ((Number(deposit) > 50000)) {
@@ -148,6 +159,11 @@ const Widthdrawl = () => {
 
 
     // console.log(bank_details,'withdrawl');
+
+
+    console.log();
+
+
 
 
     return (
