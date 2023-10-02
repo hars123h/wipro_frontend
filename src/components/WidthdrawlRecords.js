@@ -67,9 +67,9 @@ const WidthdrawlRecords = () => {
 
                                 {withdrawal_list?.map((data, index) =>
 
-                                    <li key={index} className='my-[5px] p-[10px] bg-[rgba(255,255,255,0.6)] rounded-[7px] flex flex-wrap items-stretch'>
+                                    <li key={index} className='my-[5px] p-[10px] bg-[rgba(255,255,255,0.6)] rounded-[7px] flex flex-col items-stretch'>
 
-                                        <div className="flex-1">
+                                        {/* <div className="flex-1">
                                             <p className='text-[#666]'>{nameMapper[String(data.status)]}</p>
                                             <span className='text-sm text-[#999]'>{new Date(data.time).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</span>
                                         </div>
@@ -79,6 +79,36 @@ const WidthdrawlRecords = () => {
                                                 <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
                                                 {new Intl.NumberFormat().format(data.withdrawalAmount)}
                                             </p>
+                                        </div> */}
+
+                                        <div className="flex justify-between items-center">
+                                            <p>Result</p>
+                                            {nameMapper[String(data.status)] === 'success' ?
+                                                <p className='text-green-600'>Payment Succeeded</p>
+                                                :
+                                                <p className='text-red-700'>Payment Pending</p>
+                                            }
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <p className='text-[#666]'>Amount received</p>
+                                            <p className='text-[#666]'>
+                                                <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
+                                                {new Intl.NumberFormat().format(data.withdrawalAmount * 0.9)}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <p className='text-[#666]'>Tax</p>
+                                            <p className='text-[#666]'>
+                                                <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
+                                                {new Intl.NumberFormat().format(data.withdrawalAmount * 0.1)}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex justify-between items-center">
+                                            <p className='text-[#666]'>Submit Time</p>
+                                            <p className='text-[#666]'>{new Date(data.time).toLocaleString(undefined, { timeZone: 'Asia/Kolkata' })}</p>
                                         </div>
 
                                     </li>

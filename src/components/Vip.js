@@ -53,7 +53,7 @@ const Vip = () => {
                             </div>
 
                             <div className="">
-                                <p className='text-[8px] text-white font-bold'><b>0</b> / 575</p>
+                                <p className='text-[8px] text-white font-bold'><b>0</b> / 495</p>
                             </div>
 
                             <div className="w-full h-1 my-[5px] relative bg-white rounded-[500px]">
@@ -64,7 +64,7 @@ const Vip = () => {
 
                             <p className='text-sm text-white'>
                                 You still need to invest
-                                <b className="exp font-bold"> 575 </b>
+                                <b className="exp font-bold"> 495 </b>
                                 more to upgrade VIP
                                 <b className="lv font-bold">1</b>
                             </p>
