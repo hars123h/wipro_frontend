@@ -70,10 +70,10 @@ const Widthdrawl = () => {
             return;
         }
 
-        if (withdrawDate.toDateString() === date.toDateString()) {
-            toaster('you can withdraw once in a day.')
-            return
-        }
+        // if (withdrawDate.toDateString() === date.toDateString()) {
+        //     toaster('you can withdraw once in a day.')
+        //     return
+        // }
 
         if ((Number(deposit) > 50000)) {
             toaster('Amount should not be greatr than Rs 50,000');
