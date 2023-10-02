@@ -20,6 +20,8 @@ const Invest = () => {
     const [welfare, setWelfare] = useState('bg-[rgba(255,255,255,0.3)] text-white text-lg ')
     const [activity, setActivity] = useState('bg-[rgba(255,255,255,0.3)] text-white text-lg ')
     const [activelist, setActivelist] = useState('stable')
+    const [totalEarn, setTotalEarn] = useState(0)
+
 
     const swiperHandel = name => {
         setActivelist(name)
@@ -53,6 +55,34 @@ const Invest = () => {
         }
     }, [])
 
+    const DateDifference = (date1, date2) => {
+
+
+        //console.log(date1, date2);    
+        var Difference_In_Time = date2.getTime() - date1.getTime();
+        //console.log(Difference_In_Time);
+        var Difference_In_Days = Math.floor(Difference_In_Time / (1000 * 3600 * 24));
+
+        //console.log(Difference_In_Days);
+
+        return Difference_In_Days;
+    }
+
+    useEffect(() => {
+
+
+        userDetails?.plans_purchased?.forEach(element => {
+            setTotalEarn(
+                totalEarn + (DateDifference(new Date(element.date_purchased), new Date(element.date_till_rewarded)) * element.quantity * element.plan_daily_earning)
+            )
+
+        });
+
+    }, [])
+
+    console.log(totalEarn);
+
+
 
 
 
@@ -78,7 +108,7 @@ const Invest = () => {
                                 <div className="flex-[2]">
                                     <p className='text-[26px] font-bold text-white leading-none' >
                                         <em className=' p-0 px-[2px] border-0 text-base font-light not-italic leading-none '>₹</em>
-                                        {userDetails?.earning.toFixed(2)}
+                                        {totalEarn?.toFixed(2)}
                                     </p>
                                     <span className=' text-white opacity-80 leading-none'>Bought-in</span>
                                 </div>
