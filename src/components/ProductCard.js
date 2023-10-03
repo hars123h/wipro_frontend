@@ -81,6 +81,20 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
         }
     }
 
+    const handelClick = () => {
+
+        const plan = userDetails?.plans_purchased?.filter((e) => e.plan_amount === plan_amount)
+
+        if (plan?.length !== 0 && product_type === 1) {
+            toaster('You can buy this plan only once')
+        }
+
+        else {
+            setpop(!pop)
+        }
+
+    }
+
     useEffect(() => {
         setQuantity(Math.max(quantity, 1))
     }, [quantity, setQuantity])
@@ -364,7 +378,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                     </div>
 
                     {active !== false ?
-                        <div className="text-[rgba(75,169,88,0.9)] py-[5px] justify-end flex" onClick={() => setpop(!pop)}>
+                        <div className="text-[rgba(75,169,88,0.9)] py-[5px] justify-end flex" onClick={handelClick}>
                             <p className='font-bold text-lg flex items-center'>
                                 Invest now
                                 <BiRightArrowAlt size={20} />

@@ -258,21 +258,21 @@ const Invest = () => {
                                             />
 
                                             <ProductCard
-                                                product_type={2}
+                                                product_type={1}
                                                 plan_cycle={1}
                                                 plan_amount={1700}
                                                 plan_daily_earning={3000}
                                             />
 
                                             <ProductCard
-                                                product_type={3}
+                                                product_type={1}
                                                 plan_cycle={3}
                                                 plan_amount={3700}
                                                 plan_daily_earning={2266}
                                             />
 
                                             <ProductCard
-                                                product_type={4}
+                                                product_type={1}
                                                 plan_cycle={3}
                                                 plan_amount={7700}
                                                 plan_daily_earning={4600}
