@@ -43,23 +43,23 @@ const Task = () => {
     // console.log(directMemberVip.length);
     // console.log(level_1);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const activation = async () => {
-            await axios.post(`${BASE_URL}/task_reward`, { _id: localStorage.getItem('uid'), count: level_1 }).then(responce => {
-                // console.log(responce);
-                toaster(responce.data.message)
+    //     const activation = async () => {
+    //         await axios.post(`${BASE_URL}/task_reward`, { _id: localStorage.getItem('uid'), count: level_1 }).then(responce => {
+    //             // console.log(responce);
+    //             toaster(responce.data.message)
 
-            }).catch(error => {
-                console.log(error);
-                toaster("Something went wrong")
-            })
+    //         }).catch(error => {
+    //             console.log(error);
+    //             toaster("Something went wrong")
+    //         })
 
-        }
+    //     }
 
-        activation()
+    //     activation()
 
-    }, [level_1,setLevel_1])
+    // }, [level_1,setLevel_1])
 
 
 
