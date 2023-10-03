@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import taskBG from '../images/04.png'
 import { Link } from 'react-router-dom'
 import { LiaAngleLeftSolid } from 'react-icons/lia'
@@ -12,6 +12,8 @@ const Task = () => {
 
     const { userDetails, setUserDetails, getUserDetails, user, toaster, vipimg } = useContext(ContextApi);
 
+    const [level_1, setLevel_1] = useState(0)
+
     const handelSignin = async () => {
         await axios.post(`${BASE_URL}/signinReward`, { _id: localStorage.getItem('uid') }).then(responce => {
             // console.log(responce.data);
@@ -20,6 +22,48 @@ const Task = () => {
             toaster("Something went wrong")
         })
     }
+
+    useEffect(() => {
+        const level1 = async () => {
+            await axios.post(`${BASE_URL}/lvl1`, { _id: localStorage.getItem('uid') }).then(responce => {
+                // console.log(responce);
+                // toaster(responce.data.message)
+                setLevel_1(responce.data.level1.filter(element => element.vipLevel > 0).length)
+
+            }).catch(error => {
+                console.log(error);
+                toaster("Something went wrong")
+            })
+        }
+        level1()
+    }, [])
+
+    // const directMemberVip = level_1.filter(element => element.vipLevel > 0)
+
+    // console.log(directMemberVip.length);
+    // console.log(level_1);
+
+    useEffect(() => {
+
+        const activation = async () => {
+            await axios.post(`${BASE_URL}/task_reward`, { _id: localStorage.getItem('uid'), count: level_1 }).then(responce => {
+                // console.log(responce);
+                toaster(responce.data.message)
+
+            }).catch(error => {
+                console.log(error);
+                toaster("Something went wrong")
+            })
+
+        }
+
+        activation()
+
+    }, [level_1,setLevel_1])
+
+
+
+
 
     return (
         <>
