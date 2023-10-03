@@ -211,7 +211,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                                             onChange={(e) => { setQuantity(Number(e.target.value)) }}
                                         />
 
-                                        <div className="flex flex-wrap justify-center items-center rounded-full text-white text-[30px] w-10 h-10 bg-[#3468a3] font-bold" onClick={() => setQuantity(quantity + 1)}>
+                                        <div className="flex flex-wrap justify-center items-center rounded-full text-white text-[30px] w-10 h-10 bg-[#3468a3] font-bold" onClick={() => { product_type === 1 ? toaster('quantity can only be one for this plan') : setQuantity(quantity + 1) }}>
                                             <AiOutlinePlus />
                                         </div>
 
