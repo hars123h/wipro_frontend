@@ -10,14 +10,18 @@ import { ContextApi } from '../App'
 
 const Task = () => {
 
+    const date = new Date();
+
     const { userDetails, setUserDetails, getUserDetails, user, toaster, vipimg } = useContext(ContextApi);
 
     const [level_1, setLevel_1] = useState(0)
+    const [signinrewardactive, setSigninrewardactive] = useState(new Date(userDetails?.last_signin_reward) < date)
 
     const handelSignin = async () => {
         await axios.post(`${BASE_URL}/signinReward`, { _id: localStorage.getItem('uid') }).then(responce => {
-            // console.log(responce.data);
+            // console.log(responce);
             toaster(responce.data.message)
+            setSigninrewardactive(new Date(responce.data.last_signin_reward) < date)
         }).catch(error => {
             toaster("Something went wrong")
         })
@@ -43,26 +47,29 @@ const Task = () => {
     // console.log(directMemberVip.length);
     // console.log(level_1);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const activation = async () => {
-            await axios.post(`${BASE_URL}/task_reward`, { _id: localStorage.getItem('uid'), count: level_1 }).then(responce => {
-                // console.log(responce);
-                toaster(responce.data.message)
+    const activation = async () => {
+        await axios.post(`${BASE_URL}/task_reward`, { _id: localStorage.getItem('uid'), count: level_1 }).then(responce => {
+            // console.log(responce);
+            toaster(responce.data.message)
 
-            }).catch(error => {
-                console.log(error);
-                toaster("Something went wrong")
-            })
+        }).catch(error => {
+            console.log(error);
+            toaster("Something went wrong")
+        })
 
-        }
+    }
 
-        activation()
+    //     activation()
 
-    }, [level_1,setLevel_1])
+    // }, [level_1, setLevel_1])
+
+    // console.log(userDetails);
 
 
 
+    // console.log(new Date(userDetails?.last_signin_reward) < date);
 
 
     return (
@@ -110,9 +117,15 @@ const Task = () => {
                                     <span className="text-[#818393] text-sm font-light">Sign in every day and get 7 rupees</span>
                                 </div>
 
-                                <div onClick={handelSignin} className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
-                                    Sign
-                                </div>
+                                {signinrewardactive ?
+                                    <div onClick={handelSignin} className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Sign
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Sign
+                                    </div>
+                                }
 
                             </div>
 
@@ -127,16 +140,23 @@ const Task = () => {
                                     <span className="text-[#818393] text-sm font-light">Every time you invite a friend to register and activate, you will get a reward of 100 rupees</span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount < level_1 ?
+                                    <div onClick={activation} className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
+
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
                                             <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/0
+                                                    {userDetails?.vipMemcount - level_1}
                                                 </p>
                                             </div>
                                         </div>
@@ -161,16 +181,26 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+
+
+                                {userDetails?.vipMemcount === 5 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
+
+
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
-                                                <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/5
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1 / 5 * 100}%]`}>
+                                                <p className='-bottom-[6px]  text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
+                                                    {level_1 >= 5 ? '5/5' : `${level_1} /5`}
                                                 </p>
                                             </div>
                                         </div>
@@ -195,16 +225,22 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount === 10 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1 / 10 * 100}%]`}>
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/10
+                                                    {level_1 >= 10 ? '10/10' : `${level_1} /10`}
                                                 </p>
                                             </div>
                                         </div>
@@ -229,16 +265,22 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount === 50 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1 / 50 * 100}%]`}>
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/50
+                                                    {level_1 >= 50 ? '50/50' : `${level_1} /50`}
                                                 </p>
                                             </div>
                                         </div>
@@ -263,16 +305,22 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount === 100 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1}%]`}>
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/100
+                                                    {level_1 >= 100 ? '100/100' : `${level_1} /100`}
                                                 </p>
                                             </div>
                                         </div>
@@ -297,16 +345,22 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount === 500 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1 / 500 * 100}%]`}>
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/500
+                                                {level_1 >= 5 ? '500/500' : `${level_1} /500`}
                                                 </p>
                                             </div>
                                         </div>
@@ -331,16 +385,22 @@ const Task = () => {
                                     </span>
                                 </div>
 
-                                <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
-                                    Receive
-                                </div>
+                                {userDetails?.vipMemcount === 5000 ?
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[rgba(75,169,88,0.9)] text-xs ">
+                                        Receive
+                                    </div>
+                                    :
+                                    <div className="rounded-[500px] px-[10px] py-[5px] text-white bg-[#eee] text-xs ">
+                                        Receive
+                                    </div>
+                                }
 
                                 <div className="w-full py-[10px] ">
                                     <div className="w-full relative flex flex-wrap justify-between items-center">
                                         <div className="bg-[#eee] rounded-[500px] w-full h-[5px] ">
-                                            <div className="bg-[#4c8dcb] rounded-[500px] h-[5px] w-0 ">
+                                            <div className={`bg-[#4c8dcb] rounded-[500px] h-[5px] w-[${level_1 / 5000 * 100}%]`}>
                                                 <p className='-bottom-[6px] text-right text-sm font-bold text-[#00aa75] relative whitespace-nowrap'>
-                                                    0/5000
+                                                    {level_1 >= 5 ? '5000/5000' : `${level_1} /5000`}
                                                 </p>
                                             </div>
                                         </div>
@@ -353,8 +413,8 @@ const Task = () => {
                     </div>
 
 
-                </div>
-            </div>
+                </div >
+            </div >
 
 
         </>
