@@ -125,9 +125,9 @@ const Login = () => {
                                         </div>
                                     </div>
 
-                                    <div className="my-10">
+                                    {/* <div className="my-10">
                                         <Link to={`/forgotpassword`} className='text-sm leading-none text-[rgba(52,86,255,0.9)]'>Forgot your password?</Link>
-                                    </div>
+                                    </div> */}
 
 
                                     <div className="flex flex-wrap items-center my-10 w-full justify-end ">
