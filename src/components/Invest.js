@@ -307,7 +307,6 @@ const Invest = () => {
                                                 plan_cycle={1}
                                                 plan_amount={520}
                                                 plan_daily_earning={670}
-                                                active={false}
                                             />
 
                                         </div>
