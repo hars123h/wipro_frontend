@@ -375,9 +375,18 @@ const Invest = () => {
                                                 active={false}
                                             /> */}
 
-                                            <div className="h-[50px] relative overflow-hidden text-xs translate-z-0 mx-auto my-auto ">
+                                            {/* <div className="h-[50px] relative overflow-hidden text-xs translate-z-0 mx-auto my-auto ">
                                                 <div className="h-[50px] leading-[50px] text-center text-[#cfd0d9]">No more data</div>
-                                            </div>
+                                            </div> */}
+
+                                            <ProductCard
+                                                product_type={1}
+                                                product_image={img302}
+                                                plan_cycle={1}
+                                                plan_amount={520}
+                                                plan_daily_earning={670}
+                                                active={false}
+                                            />
 
                                         </div>
                                     </div>

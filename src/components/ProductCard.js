@@ -387,7 +387,7 @@ const ProductCard = ({ active, pre_sale, long_plan_state, product_type, product_
                         :
                         <div className="text-[rgba(204,204,204,0.9)] py-[5px] justify-end flex">
                             <p className='font-bold text-lg flex items-center'>
-                                Stop selling
+                                Pre Sale
                             </p>
                         </div>
                     }
